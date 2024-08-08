@@ -1,6 +1,7 @@
 import { Footer } from "./components/Footer";
 import NavBar from "./components/Navbar"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { StyledTable } from "./components/Test.jsx";
 
 
 function App() {
@@ -9,9 +10,7 @@ function App() {
     <>
       <NavBar/>
       <main>
-        <h1>
-          Hello
-        </h1>
+      <StyledTable />
       </main>
       <Footer/>
     </>
