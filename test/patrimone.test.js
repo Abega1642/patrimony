@@ -31,6 +31,29 @@ describe("Test about salary evaluation", () => {
         assert.equal(salary.getValeur(new Date("2024-3-3")), 0);
 
     });
+    it("should return 3991780.821917808", () => {
+        
+        const Ilo = new Personne("Ilo");
+        const john = new Personne("John Doe");
+
+        const macBookPro = new Possession(john, "MacBook Pro", 4000000, new Date("2024-2-3"), null, 5);
+        const salaire = new Flux(john,"Alternance",600_000,new Date("2024-1-6"),null,null,1);
+
+        assert.equal(macBookPro.getValeur(new Date("2024-2-18")), 3991780.821917808);
+
+    });
+    it("should return 000000", () => {
+        
+        const Ilo = new Personne("Ilo");
+        const john = new Personne("John Doe");
+
+        const salaire = new Flux(john,"Alternance",600_000,new Date("2024-1-6"),null,null,1);
+
+        assert.equal(salaire.getValeur(new Date("2024-2-18")),600000);
+
+    });
+
+
 
     it("should return 10_000", () => {
         const salary = new Flux(
@@ -135,18 +158,28 @@ describe("Test about possession increasing ration :", () => {
 })
 
 describe("A test for calculating the total value of all possessions using Patrimoine.getValeur", ()=>{
-  it("it should return 3855128.7671232875", ()=>{
+  it("it should return 400000", ()=>{
     const Ilo = new Personne("Ilo");
-    const ordinateur = new Possession(Ilo,"ordinateur",2_000_000,new Date("2021-05-10"),null,10);
-    const compteEpargne = new Argent(Ilo,"compte epargne",20_000,new Date("2023-04-09"),null,60,"2023-06-01",TYPE_ARGENT.Epargne);
-    const salary = new Flux(Ilo,"Salaire",600_000,new Date("2024-3-3"),null,0,15);
-    const spending = new Flux(Ilo,"Depense",-100_000,new Date("2024-3-3"),null,0,1);
+    const john = new Personne("John Doe");
 
-    const possessions = [ordinateur, compteEpargne, salary, spending];
-    const patrimoine = new Patrimoine(Ilo, possessions)
+    const macBookPro = new Possession(john, "MacBook Pro", 4000000, new Date("2024-1-6"), null, 5);
+    const salaire = new Flux(john,"Alternance",500_000,new Date("2024-1-6"),null,null,1);
+    const traindevie = new Flux(john,"Survie",-300_000,new Date("2024-1-6"),null,null,2)
+    const possessions = [macBookPro,salaire,traindevie];
+    const johnPatrimoine  = new Patrimoine(john,possessions);
 
-    const date = new Date("2024-8-8");
-    const result = ordinateur.getValeur(date) + compteEpargne.getValeur(date) + salary.getValeur(date) + spending.getValeur(date)
-    assert.equal(patrimoine.getValeur(date), result)
+    assert.equal(johnPatrimoine.getValeur(new Date("2024-1-6")), 4000000)
+  })
+  it("it should return 4291780,821917808", ()=>{
+    const Ilo = new Personne("Ilo");
+    const john = new Personne("John Doe");
+
+    const macBookPro = new Possession(john, "MacBook Pro", 4000000, new Date("2024-2-3"), null, 5);
+    const salaire = new Flux(john,"Alternance",600_000,new Date("2024-1-6"),null,null,1);
+    const traindevie = new Flux(john,"Survie",-300_000,new Date("2024-1-6"),null,null,2)
+    const possessions = [macBookPro,salaire,traindevie];
+    const johnPatrimoine  = new Patrimoine(john,possessions);
+
+    assert.equal(johnPatrimoine.getValeur(new Date("2024-2-18")), 4291780.821917808)
   })
 })
