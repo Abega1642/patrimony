@@ -6,16 +6,14 @@ import Possession from "./models/possessions/Possession.js";
 const john = new Personne("John Doe");
 
 const macBookPro = new Possession(john, "MacBook Pro", 4000000, new Date("2023-12-25"), null, 5);
-const salaire = new Flux(john,"Alternance",500_000,new Date("2023-1-1"),null,null,1);
-const traindevie = new Flux(john,"Survie",-300_000,new Date("2023-1-1"),null,null,2)
-const possessions = [macBookPro,salaire,traindevie];
+const Clothes = new Possession(john, "Clothes", 2000000, new Date("2023-12-25"), null, 10);
+const savingsAccount = new Possession(john, "SavingsAccount", 500000, new Date("2023-12-25"), null, -5);
+const salaire = new Flux(john,"Alternance",500_000,new Date("2023-1-1"),null,0,1);
+const traindevie = new Flux(john,"Survie",-300_000,new Date("2023-1-1"),null,0,2);
+const possessions = [macBookPro,, Clothes, savingsAccount,salaire,traindevie];
 
 
 const johnPatrimoine  = new Patrimoine(john,possessions);
-
-johnPatrimoine.addPossession(macBookPro);
-johnPatrimoine.addPossession(salaire);
-johnPatrimoine.addPossession(traindevie);
 
 function save(personne, patrimoine) {
   const file = []
