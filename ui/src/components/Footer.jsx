@@ -1,7 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap';
+
 export const Footer = () => {
   return (
-    <footer className="bg-dark text-white text-center py-3">
+    <footer className="bg-dark text-white text-center py-3 footer">
       <Container>
         <Row>
           <Col>

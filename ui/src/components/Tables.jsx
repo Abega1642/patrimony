@@ -9,8 +9,7 @@ export function Tables() {
             try {
                 const response = await fetch('http://localhost:3001/api/data');
                 const result = await response.json();
-                console.log(result);
-                
+
                 if (result.status === 'OK') {
                     setData(result.data.data[1].data.possessions);
                 } else {
@@ -25,7 +24,7 @@ export function Tables() {
     }, []);
 
     return (
-        <Table striped bordered hover className="mt-5">
+        <Table striped bordered hover className="mt-5 mg-x">
             <thead>
                 <tr>
                     <th>Possesseur</th>
@@ -42,7 +41,18 @@ export function Tables() {
                         <td>{item.possesseur.nom}</td>
                         <td>{item.libelle}</td>
                         <td>{item.valeur}</td>
-                        <td>{item.dateDebut}</td>
+                        <td>
+                            {
+                                new Date(item.dateDebut)
+                                    .toLocaleDateString (
+                                        {
+                                            year: 'numeric', 
+                                            month: 'long', 
+                                            day: 'numeric' 
+                                        }
+                                    )
+                            }
+                        </td>
                         <td>{item.dateFin ? item.dateFin : 'Non définie'}</td>
                         <td>{item.tauxAmortissement ? item.tauxAmortissement : 'Non définie'}</td>
                     </tr>
