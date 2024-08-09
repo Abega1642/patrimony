@@ -27,11 +27,11 @@ function save(personne, patrimoine) {
     model: "Patrimoine",
     data: patrimoine
   })
-  return writeFile("./fileManager/data.json", file)
+  return writeFile("./data.json", file)
 
 }
-function read() {
-  return readFile("./fileManager/data.json")
+function read(path) {
+  return readFile(path)
 }
 
 export {save, read}
