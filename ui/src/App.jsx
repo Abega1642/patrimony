@@ -3,7 +3,7 @@ import NavBar from "./components/Navbar.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tables } from "./components/Tables.jsx";
 import './App.css'
-import ActualPatrimonyValue from "./components/ActualPatrimonyValue.jsx";
+import PatrimonyValue from "./components/PatrimonyValue.jsx";
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <NavBar/>
       <main className="main">
         <Tables />
-        <ActualPatrimonyValue />
+        <PatrimonyValue />
       </main>
       <Footer/>
     </>

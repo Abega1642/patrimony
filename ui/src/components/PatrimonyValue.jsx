@@ -3,7 +3,7 @@ import Flux from "../../../models/possessions/Flux.js"; // Assure-toi que ces im
 import Possession from "../../../models/possessions/Possession.js";
 import Patrimoine from "../../../models/Patrimoine.js";
 
-function ActualPatrimonyValue() {
+function PatrimonyValue() {
     const [patrimony, setPatrimony] = useState(new Patrimoine("", []));
     const [evaluationDate, setEvaluationDate] = useState(new Date());
 
@@ -141,4 +141,4 @@ function ActualPatrimonyValue() {
     );
 }
 
-export default ActualPatrimonyValue;
+export default PatrimonyValue;
