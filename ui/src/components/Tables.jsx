@@ -28,7 +28,7 @@ export function Tables() {
         <h2 className="text-center my-6 text-primary">
                     Liste de votre patrimoine
         </h2>
-        <Table striped bordered hover className="mt-5 mg-x">
+        <Table striped bordered hover className="mt-5 mg-x" id='possession'>
             <thead>
                 <tr>
                     <th>Possesseur</th>

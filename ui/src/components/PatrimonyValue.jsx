@@ -60,7 +60,7 @@ function PatrimonyValue() {
 
     return (
         <>  
-            <section className="brd-styled">
+            <section id="actualValue" className="brd-styled">
                 <h2 className="text-center my-6 text-primary">
                     Évaluez la Puissance de Votre Patrimoine
                 </h2>
@@ -98,7 +98,7 @@ function PatrimonyValue() {
                 <br />
             </section>
 
-            <section className="brd-styled">
+            <section id="futurValue" className="brd-styled">
                 <h2 className="text-center my-6 text-primary">Évaluez Votre Patrimoine à la Date de Votre Choix</h2>
                 <div className="ml-7 mt-5">
                     <form>
