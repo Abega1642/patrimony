@@ -24,6 +24,10 @@ export function Tables() {
     }, []);
 
     return (
+    <>
+        <h2 className="text-center my-6 text-primary">
+                    Liste de votre patrimoine
+        </h2>
         <Table striped bordered hover className="mt-5 mg-x">
             <thead>
                 <tr>
@@ -54,10 +58,12 @@ export function Tables() {
                             }
                         </td>
                         <td>{item.dateFin ? item.dateFin : 'Non définie'}</td>
-                        <td>{item.tauxAmortissement ? item.tauxAmortissement : 'Non définie'}</td>
+                        <td>{item.tauxAmortissement}</td>
                     </tr>
                 ))}
             </tbody>
         </Table>
+    
+    </>
     );
 }

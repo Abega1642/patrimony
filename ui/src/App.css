@@ -11,15 +11,32 @@ i {
     font-weight: bolder;
 }
 .main {
-    height: 90dvh;
+    height: max-content;
 }
 .brd-styled {
     border-radius: 15px;
     width: 80dvw;
+    height: max-content;
     margin-inline: auto;
     margin-top: 10dvh;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     border-color: #0026ff;
+}
+.my-6 {
+    padding-block: 6dvh;
+}
+
+.values {
+    font-weight: bold;
+    color: rgb(3, 139, 3);
+    font-style: oblique;
+}
+.vlu {
+    font-weight: bolder;
+    box-shadow: 0 0 5px rgba(0, 255, 102, 0.5);
+}
+.df {
+    justify-content: center;
 }
 
 .mg-x {

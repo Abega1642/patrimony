@@ -5,7 +5,7 @@ const NavBar = () => {
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#home" className="fw-bold fs-3">
-          Yε:rPatrimony
+          <i className="fa fa-bitcoin"></i>Yε:rPatrimony<i className="fa fa-dollar"></i>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
