@@ -34,8 +34,9 @@ export async function fetchData(setPatrimony) {
                         possessionData.tauxAmortissement
                     );
                 }
-            });
+            });            
             setPatrimony(new Patrimoine(result.data.data[1].data, possessions))
+            
             
         } else {
             console.error('Erreur lors de la lecture des données');
