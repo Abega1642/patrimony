@@ -1,26 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
+import {fetchData} from "../UnchangedComponents/function/fetchData.js";
+import Patrimoine from '../../../../models/Patrimoine.js';
+import ShowRows from './ShowRows.jsx';
 
 export function PatrimonyTable() {
-    const [data, setData] = useState([]);
-
+    const [patrimony, setPatrimony] = useState(new Patrimoine("", []));
     useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await fetch('http://localhost:3001/possession');
-                const result = await response.json();
-
-                if (result.status === 'OK') {
-                    setData(result.data.data[1].data.possessions);
-                } else {
-                    console.error('Erreur lors de la lecture des données');
-                }
-            } catch (error) {
-                console.error('Erreur lors de la requête :', error);
-            }
-        }
-
-        fetchData();
+        fetchData(setPatrimony);        
     }, []);
 
     return (
@@ -37,33 +24,16 @@ export function PatrimonyTable() {
                     <th>Date de début</th>
                     <th>Date de fin</th>
                     <th>Taux d`Amortissement</th>
+                    <th>Valeur actuel</th>
                 </tr>
             </thead>
             <tbody>
-                {data.map((item, index) => (
-                    <tr key={index}>
-                        <td>{item.possesseur.nom}</td>
-                        <td>{item.libelle}</td>
-                        <td>{item.valeur}</td>
-                        <td>
-                            {
-                                new Date(item.dateDebut)
-                                    .toLocaleDateString (
-                                        {
-                                            year: 'numeric', 
-                                            month: 'long', 
-                                            day: 'numeric' 
-                                        }
-                                    )
-                            }
-                        </td>
-                        <td>{item.dateFin ? item.dateFin : 'Non définie'}</td>
-                        <td>{item.tauxAmortissement}</td>
-                    </tr>
-                ))}
+                {
+                    ShowRows(patrimony)
+                }
             </tbody>
+            
         </Table>
-    
     </>
     );
 }
