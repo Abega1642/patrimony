@@ -1,9 +1,8 @@
-export default function ShowRows({possesseur, possessions}) {
+export default function ShowRows({possessions}) {
     return (
         <>
             <thead>
                 <tr>
-                    <th>Possesseur</th>
                     <th>Libellé</th>
                     <th>Valeur</th>
                     <th>Date de début</th>
@@ -13,12 +12,10 @@ export default function ShowRows({possesseur, possessions}) {
                 </tr>
             </thead>
             <tbody>
-                {console.log(possesseur)}
                 {
                     possessions.map(pos => {
                         return (
                             <tr key={pos.libelle}>
-                                <td>{possesseur}</td>
                                 <td>{pos.libelle}</td>
                                 <td>{pos.valeur}</td>
                                 <td>{pos.dateDebut.toLocaleDateString()}</td>

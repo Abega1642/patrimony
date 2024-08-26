@@ -17,7 +17,7 @@ export function PatrimonyTable() {
         </h2>
         <Table striped bordered hover className="mt-5 mg-x" id='possession'>
             <ShowRows 
-                possesseur={patrimony.possesseur.possesseur.nom} 
+                possesseur={patrimony.possesseur.nom} 
                 possessions={patrimony.possessions} 
             />
         </Table>
