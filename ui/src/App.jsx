@@ -1,9 +1,9 @@
-import { Footer } from "./components/Footer.jsx";
-import NavBar from "./components/Navbar.jsx"
+import { Footer } from "./components/UnchangedComponents/Footer.jsx";
+import NavBar from "./components/UnchangedComponents/Navbar.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Tables } from "./components/Tables.jsx";
+import { PatrimonyTable } from "./components/PatrimonyTable/PatrimonyTable.jsx";
 import './App.css'
-import PatrimonyValue from "./components/PatrimonyValue.jsx";
+import PatrimonyValue from "./components/PatrimonyValue/PatrimonyValue.jsx";
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <>
       <NavBar/>
       <main className="main">
-        <Tables />
+        <PatrimonyTable />
         <PatrimonyValue />
       </main>
       <Footer/>

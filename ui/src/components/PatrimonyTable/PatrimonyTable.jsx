@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 
-export function Tables() {
+export function PatrimonyTable() {
     const [data, setData] = useState([]);
 
     useEffect(() => {

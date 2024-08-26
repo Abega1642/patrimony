@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Flux from "../../../models/possessions/Flux.js"; // Assure-toi que ces imports sont corrects
-import Possession from "../../../models/possessions/Possession.js";
-import Patrimoine from "../../../models/Patrimoine.js";
+import Flux from "../../../../models/possessions/Flux.js";
+import Possession from "../../../../models/possessions/Possession.js";
+import Patrimoine from "../../../../models/Patrimoine.js";
 
 function PatrimonyValue() {
     const [patrimony, setPatrimony] = useState(new Patrimoine("", []));
@@ -16,7 +16,7 @@ function PatrimonyValue() {
                 if (result.status === 'OK') {
                     const possessions = result.data.data[1].data.possessions.map(possessionData => {
                         const numParams = Object.keys(possessionData).length;
-                        const isFlux = numParams === 8;
+                        const isFlux = (numParams === 8);
                         if (isFlux) {
                             
                             const anw = new Flux(
