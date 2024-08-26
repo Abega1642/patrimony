@@ -5,7 +5,7 @@ import Patrimoine from '../../../../models/Patrimoine.js';
 import ShowRows from './ShowRows.jsx';
 
 export function PatrimonyTable() {
-    const [patrimony, setPatrimony] = useState(new Patrimoine("", []));
+    const [patrimony, setPatrimony] = useState(new Patrimoine({}, []));
     useEffect(() => {
         fetchData(setPatrimony);        
     }, []);
@@ -16,23 +16,10 @@ export function PatrimonyTable() {
                     Liste de votre patrimoine
         </h2>
         <Table striped bordered hover className="mt-5 mg-x" id='possession'>
-            <thead>
-                <tr>
-                    <th>Possesseur</th>
-                    <th>Libellé</th>
-                    <th>Valeur</th>
-                    <th>Date de début</th>
-                    <th>Date de fin</th>
-                    <th>Taux d`Amortissement</th>
-                    <th>Valeur actuel</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    ShowRows(patrimony)
-                }
-            </tbody>
-            
+            <ShowRows 
+                possesseur={patrimony.possesseur.possesseur.nom} 
+                possessions={patrimony.possessions} 
+            />
         </Table>
     </>
     );
