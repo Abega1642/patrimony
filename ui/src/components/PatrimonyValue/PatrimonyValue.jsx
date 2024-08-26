@@ -10,7 +10,7 @@ function PatrimonyValue() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:3001/api/data');
+                const response = await fetch('http://localhost:3001/possession');
                 const result = await response.json();
 
                 if (result.status === 'OK') {

@@ -10,7 +10,7 @@ app.use(cors({
 
 app.use(express.json());
 
-app.get('/api/data', async (req, res) => {
+app.get('/possession', async (req, res) => {
   try {
     const data = await read('../data/data.json');
     res.json({ status: "OK", data: data });
