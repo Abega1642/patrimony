@@ -4,6 +4,7 @@ import getAllPossessions from './getAllPossessions.js';
 import { readFile, writeFile } from '../data/index.js';
 import { getPatrimonyValueByDate } from './patrimonyValue.js';
 import { updatePossessionByLibelle } from './updatePossessionByLibelle.js';
+import { closePossession } from './closePossession.js';
 
 const app = express();
 
@@ -57,6 +58,20 @@ app.put('/possession/:libelle', async (req, res) => {
     libelle = libelle.slice(1);
     
     const result = await updatePossessionByLibelle(libelle, req.body);
+
+    res.status(200).json(result)
+  } catch(err) {
+    res.status(500).json({status: "Error while computing update value", error: err.message})
+  }
+})
+
+app.patch('/possession/:libelle/close', async (req, res) => {
+  try {
+    let libelle = req.params.libelle;
+    
+    libelle = libelle.slice(1);
+    
+    const result = await closePossession(libelle);
 
     res.status(200).json(result)
   } catch(err) {
