@@ -3,6 +3,7 @@ import cors from 'cors';
 import getAllPossessions from './getAllPossessions.js';
 import { readFile, writeFile } from '../data/index.js';
 import { getPatrimonyValueByDate } from './patrimonyValue.js';
+import { updatePossessionByLibelle } from './updatePossessionByLibelle.js';
 
 const app = express();
 
@@ -46,6 +47,20 @@ app.get('/patrimoine/:date', async (req, res) => {
     res.status(200).json({value : value});
   } catch(err) {
     res.status(500).json({status: "Error while computing patrimony value", error: err.message})
+  }
+})
+
+app.put('/possession/:libelle', async (req, res) => {
+  try {
+    let libelle = req.params.libelle;
+    
+    libelle = libelle.slice(1);
+    
+    const result = await updatePossessionByLibelle(libelle, req.body);
+
+    res.status(200).json(result)
+  } catch(err) {
+    res.status(500).json({status: "Error while computing update value", error: err.message})
   }
 })
 
