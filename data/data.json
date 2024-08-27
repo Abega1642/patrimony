@@ -37,10 +37,10 @@
                         "nom": "John Doe"
                     },
                     "libelle": "Clothes",
-                    "valeur": 2000000,
+                    "valeur": 3500000,
                     "dateDebut": "2024-02-03T00:00:00.000Z",
                     "dateFin": null,
-                    "tauxAmortissement": 10
+                    "tauxAmortissement": 20
                 },
                 {
                     "possesseur": {
