@@ -10,7 +10,6 @@ export async function updatePossessionByLibelle(libelle, updatedData) {
       const data = readResult.data;
   
       const possessions = data[1].data.possessions;
-      console.log(possessions);
       
 
       const ind = possessions.findIndex(p => p.libelle === libelle);
@@ -33,4 +32,4 @@ export async function updatePossessionByLibelle(libelle, updatedData) {
       return { status: 'ERROR', error: err.message };
 
     }
-  }
+}
