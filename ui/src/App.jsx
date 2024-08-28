@@ -1,7 +1,7 @@
 import { Footer } from "./components/UnchangedComponents/Footer.jsx";
 import NavBar from "./components/UnchangedComponents/Navbar.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { PatrimonyTable } from "./components/PatrimonyTable/PatrimonyTable.jsx";
+import { PossessionsList } from "./components/PossessionsList/PatrimonyTable.jsx";
 import './App.css'
 import PatrimonyValue from "./components/PatrimonyValue/PatrimonyValue.jsx";
 
@@ -12,7 +12,7 @@ function App() {
     <>
       <NavBar/>
       <main className="main">
-        <PatrimonyTable />
+        <PossessionsList />
         <PatrimonyValue />
       </main>
       <Footer/>
