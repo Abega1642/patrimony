@@ -10,14 +10,11 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#possession" className="me-3">
-              Possession
+            <Nav.Link className="me-3">
+              Possessions
             </Nav.Link>
-            <Nav.Link href="#actualValue" className="me-3">
-              Actual Value
-            </Nav.Link>
-            <Nav.Link href="#futurValue">
-              Futur Value
+            <Nav.Link className="me-3">
+              Patrimony
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
