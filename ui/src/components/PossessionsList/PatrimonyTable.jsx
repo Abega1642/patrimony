@@ -40,8 +40,8 @@ export function PossessionsList() {
                             <tr key={ind}>
                                 <td>{element.libelle}</td>
                                 <td>{element.valeur}</td>
-                                <td>{element.dateDebut}</td>
-                                <td>{element.dateFin}</td>
+                                <td>{new Date(element.dateDebut).toLocaleDateString()}</td>
+                                <td>{new Date(element.dateFin).toLocaleDateString()}</td>
                                 <td>{element.tauxAmortissement}</td>
                                 <td>{Math.abs(element.actualValue)}</td>
                             </tr>
