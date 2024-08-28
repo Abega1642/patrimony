@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Inputs } from "./Inputs";
-
+import { BASE_URL } from "../../functions_constants/backendUrl";
+import { useNavigate } from "react-router-dom";
 
 function AddPossession() {
     const [libelle, setLibelle] = useState('');
     const [valeur, setValeur] = useState(0);
     const [dateDebut, setDateDebut] = useState(new Date());
     const [dateFin, setDateFin] = useState(null);
-    const [tauxAmortissement, setTauxAmortissement] = useState(0)
+    const [tauxAmortissement, setTauxAmortissement] = useState(0);
+    const navigation = useNavigate();
 
-    const addPossession = () => {
+    const addPossession = async () => {
         let possession = {
             "possesseur": {
                         "nom": "John Doe"
@@ -20,7 +22,29 @@ function AddPossession() {
             "dateFin": dateFin,
             "tauxAmortissement": Number.parseFloat(tauxAmortissement)
         }
-        console.log(possession);
+        
+        try {
+            const response = await fetch(BASE_URL + '/possession', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(possession)
+            });
+            
+            if (response.ok) {
+                setLibelle('');
+                setValeur(0);
+                setDateDebut(new Date());
+                setDateFin(null);
+                setTauxAmortissement(0);
+                navigation("/possession");
+            } else {
+                console.error('Erreur lors de l\'ajout de la possession:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erreur lors de l\'ajout de la possession:', error);
+        }
     }
 
   return (
