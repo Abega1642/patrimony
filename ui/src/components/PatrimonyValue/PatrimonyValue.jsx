@@ -5,6 +5,7 @@ function PatrimonyValue() {
     const [patrimonyValueAtNow, setPatrimonyValueAtNow] = useState(0);
     const [patrimonyValueAtSelectedDate, setPatrimonyValueAtSelectedDate] = useState(0);
     const [evaluationDate, setEvaluationDate] = useState(new Date());
+    const [data, setData] = useState(new Date());
 
     useEffect(() => {
         async function fetchDatas() {
@@ -27,8 +28,11 @@ function PatrimonyValue() {
         fetchDatas2();
     }, [evaluationDate]);
 
-    const handleDateChange = (e) => {
-        setEvaluationDate(new Date(e.target.value));
+    const transfertValue = (e) => {
+        setData(new Date(e.target.value));
+    }
+    const handleDateChange = () => {
+        setEvaluationDate(data);
     };
 
     return (
@@ -83,9 +87,17 @@ function PatrimonyValue() {
                             type="date"
                             name="evaluationDate"
                             id="date"
-                            onChange={handleDateChange}
+                            onChange={transfertValue}
                         />
                     </form>
+                    <div className="text-center mt-4">
+                        <button
+                            className="btn btn-success shadow-sm"
+                            onClick={handleDateChange}
+                        >
+                            Valider
+                        </button>
+                    </div>
                     
                     <div className="mt-4 p-3 rounded shadow-sm bg-light">
                         <h3 className="mb-3">Évaluation pour :</h3>
@@ -103,8 +115,11 @@ function PatrimonyValue() {
                             <input 
                                 className="form-control w-mx shadow-sm text-primary fs-5 fs-bolder" 
                                 type="text" value={`${patrimonyValueAtSelectedDate} Ar`} 
-                                readOnly />
+                                readOnly 
+                            />
                         </form>
+                        
+                        
                     </div>
                 </div>
                 <br />
