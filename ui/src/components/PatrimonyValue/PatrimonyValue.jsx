@@ -1,14 +1,31 @@
 import { useState, useEffect } from "react";
-import Patrimoine from "../../../../models/Patrimoine.js";
-import { fetchData } from "../UnchangedComponents/function/fetchData.js";
+import { BASE_URL } from "../../functions_constants/backendUrl.js";
 
 function PatrimonyValue() {
-    const [patrimony, setPatrimony] = useState(new Patrimoine("", []));
+    const [patrimonyValueAtNow, setPatrimonyValueAtNow] = useState(0);
+    const [patrimonyValueAtSelectedDate, setPatrimonyValueAtSelectedDate] = useState(0);
     const [evaluationDate, setEvaluationDate] = useState(new Date());
 
     useEffect(() => {
-        fetchData(setPatrimony);
+        async function fetchDatas() {
+            var result = await fetch(BASE_URL + '/patrimoine/:' + `${new Date().toISOString().split('T')[0]}`)
+            result = await result.json();
+            console.log(result.value);
+            setPatrimonyValueAtNow(result.value)   
+        }
+        fetchDatas();
     }, []);
+
+    useEffect(() => {
+        async function fetchDatas2() {
+            var result = await fetch(BASE_URL + '/patrimoine/:' + `${evaluationDate.toISOString().split('T')[0]}`)
+            result = await result.json()
+            console.log(result.value);
+            
+            setPatrimonyValueAtSelectedDate(result.value)
+        }
+        fetchDatas2();
+    }, [evaluationDate]);
 
     const handleDateChange = (e) => {
         setEvaluationDate(new Date(e.target.value));
@@ -45,7 +62,7 @@ function PatrimonyValue() {
                             <input
                             className="form-control w-mx shadow text-primary fs-5 fs-bolder"
                             type="text"
-                            value={patrimony.getValeur(new Date()) + " Ar"}
+                            value={`${patrimonyValueAtNow}  Ar `}
                             readOnly
                             />
                         </div>
@@ -85,7 +102,7 @@ function PatrimonyValue() {
                             </label>
                             <input 
                                 className="form-control w-mx shadow-sm text-primary fs-5 fs-bolder" 
-                                type="text" value={patrimony.getValeur(evaluationDate) + " Ar"} 
+                                type="text" value={`${patrimonyValueAtSelectedDate} Ar`} 
                                 readOnly />
                         </form>
                     </div>
