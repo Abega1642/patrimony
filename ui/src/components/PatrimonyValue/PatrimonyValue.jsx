@@ -71,7 +71,7 @@ function PatrimonyValue() {
                 <br />
             </section>
 
-            <section id="futurValue" className="brd-styled">
+            <section id="futurValue" className="brd-styled mb-7">
                 <h2 className="text-center my-6 text-primary">Évaluez Votre Patrimoine à la Date de Votre Choix</h2>
                 <div className="ml-7 mt-5">
                     <form>

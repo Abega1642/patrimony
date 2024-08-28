@@ -20,12 +20,16 @@ function App() {
               <main className="main">
                 <PossessionsList />
                 <AddPossessionSection />
-                <PatrimonyValue />
               </main>
               } 
             />
-            <Route path='/patrimoine' element = {null} />
-            <Route path='/possession/add' element = {<AddPossession/>} />
+            <Route path='/patrimoine' element = {
+              <PatrimonyValue />
+            } />
+            <Route path='/possession/add' element = {
+                <AddPossession/>
+              } 
+            />
           </Routes>
         <Footer />
       </BrowserRouter>

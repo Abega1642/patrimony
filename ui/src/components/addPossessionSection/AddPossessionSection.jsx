@@ -9,7 +9,7 @@ function AddPossessionSection() {
 
     return (
         <section id="addPossessionSection" 
-            className="brd-styled mt-5 pb-7">
+            className="brd-styled mt-5 pb-7 mb-7">
             <h3 className="text-center my-3 text-primary">
                 Ajoutez une Nouvelle Possession
             </h3>

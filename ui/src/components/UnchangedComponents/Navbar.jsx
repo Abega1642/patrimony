@@ -5,7 +5,7 @@ const NavBar = () => {
   const navigation = useNavigate();
 
   function goToPatrimony() {
-    navigation("/patrimony");
+    navigation("/patrimoine");
   }
 
   function goToPossession() {
