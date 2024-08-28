@@ -82,10 +82,10 @@ app.patch('/possession/:libelle/close', async (req, res) => {
   }
 })
 
-app.get('/patrimoine/range', async (req,res) => {
+app.post('/patrimoine/range', async (req,res) => {
   try {
     const patrimonyValues = await patrimonyRangeValues(req.body.start, req.body.end, req.body.day)
-    res.status(200).json(patrimonyValues);
+    res.status(201).json(patrimonyValues);
   } catch (err) {
     res.status(500).json({ status: "Possessions retrievement failed.", error: err.message });
   }

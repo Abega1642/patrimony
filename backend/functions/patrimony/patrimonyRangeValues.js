@@ -23,26 +23,24 @@ function getDatesBetween(start, end, day) {
   
     return intervals;
 }
-async function push(array, element) {
-  return await array.push(element)
-}
 
-export async function patrimonyRangeValues(start, end, day) {
+export async function patrimonyRangeValues(startDate, endDate, day) {
+    var beginDate = new Date(startDate);
+    var endingDate = new Date(endDate)
+    day = Number.parseInt(day)
+
     const result = []
-    const datesIntervals = getDatesBetween(start, end, day);
+    const datesIntervals = getDatesBetween(beginDate, endingDate, day);
 
     for (let i = 0; i < datesIntervals.length; i++) {
         let value = await getPatrimonyValueByDate(new Date(datesIntervals[i]));
-        push(result, value)
+        
+       result.push(value);
     }
-    return result
+    return {
+      "patrimony_values" : result
+    }
 }
-
-
-const start = new Date("2024-08-27");
-const end = new Date("2024-11-01");
-const day = 11;
-patrimonyRangeValues(start, end, day).then(a => console.log(a))
 
 
 
