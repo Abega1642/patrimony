@@ -5,16 +5,30 @@ import { BASE_URL } from '../../functions_constants/backendUrl.js';
 export function PossessionsList() {
     const [possessions, setPossessions] = useState([]);
 
-    useEffect(() => {
-        async function fetchDatas() {
-            try {
-                const response = await fetch(BASE_URL + '/possession');
-                const data = await response.json();
-                setPossessions(data);
-            } catch (error) {
-                console.error('Erreur lors du fetch des possessions:', error);
-            }
+    async function fetchDatas() {
+        try {
+            const response = await fetch(BASE_URL + '/possession');
+            const data = await response.json();
+            setPossessions(data);
+        } catch (error) {
+            console.error('Erreur lors du fetch des possessions:', error);
         }
+    }
+    async function close(index) {
+        try {
+            const libelle = possessions[index].libelle;
+            const response = await fetch(`${BASE_URL}/possession/:${libelle}/close`, {
+                method: 'PATCH',
+            });
+            if (!response.ok) {
+                throw new Error('Erreur lors de la fermeture de la possession');
+            }
+            fetchDatas();
+        } catch (error) {
+            console.error('Erreur lors de la fermeture de la possession:', error);
+        }
+    }
+    useEffect(() => {
         fetchDatas();
     }, []);
 
@@ -42,14 +56,15 @@ export function PossessionsList() {
                                 <td>{element.libelle}</td>
                                 <td>{element.valeur}</td>
                                 <td>{new Date(element.dateDebut).toLocaleDateString()}</td>
-                                <td>{new Date(element.dateFin).toLocaleDateString()}</td>
+                                <td>{element.dateFin == null ?
+                                "---" : new Date(element.dateFin).toLocaleDateString()}</td>
                                 <td>{element.tauxAmortissement}</td>
                                 <td>{Math.abs(element.actualValue)}</td>
                                 <td>
                                     <Button 
                                         variant="primary" 
                                         size="sm" 
-                                        onClick={() => null }
+                                        onClick={() => null}
                                         className="me-2"
                                     >
                                         Edit
@@ -57,7 +72,7 @@ export function PossessionsList() {
                                     <Button 
                                         variant="danger" 
                                         size="sm" 
-                                        onClick={() =>  null}
+                                        onClick={() => close(ind)}
                                     >
                                         Close
                                     </Button>

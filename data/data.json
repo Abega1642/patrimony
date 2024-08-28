@@ -39,7 +39,7 @@
                     "libelle": "Clothes",
                     "valeur": 3500000,
                     "dateDebut": "2024-02-03T00:00:00.000Z",
-                    "dateFin": "2024-08-27T17:52:43.506Z",
+                    "dateFin": null,
                     "tauxAmortissement": 20
                 },
                 {
@@ -103,7 +103,7 @@
                     "libelle": "Nouvelle test de création updated",
                     "valeur": 1000000,
                     "dateDebut": "2024-08-27T00:00:00.000Z",
-                    "dateFin": "2024-08-28T03:50:49.091Z",
+                    "dateFin": null,
                     "tauxAmortissement": 5
                 },
                 {
@@ -113,7 +113,7 @@
                     "libelle": "changer de nom",
                     "valeur": 10000004,
                     "dateDebut": "2024-08-27T00:00:00.000Z",
-                    "dateFin": "2024-08-28T12:57:51.523Z",
+                    "dateFin": null,
                     "tauxAmortissement": 5
                 }
             ]
