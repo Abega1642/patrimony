@@ -5,6 +5,7 @@ import { PossessionsList } from "./components/PossessionsList/PatrimonyTable.jsx
 import './App.css'
 import PatrimonyValue from "./components/PatrimonyValue/PatrimonyValue.jsx";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AddPossession from "./components/actions/Edit.jsx";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
               } 
             />
             <Route path='/patrimoine' element = {null} />
-            <Route path='/possession/edit' element = {null} />
+            <Route path='/possession/edit' element = {<AddPossession/>} />
           </Routes>
         <Footer />
       </BrowserRouter>
