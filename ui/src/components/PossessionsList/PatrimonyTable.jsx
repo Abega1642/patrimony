@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import { BASE_URL } from '../../functions_constants/backendUrl.js';
 
 export function PossessionsList() {
@@ -32,6 +32,7 @@ export function PossessionsList() {
                         <th>Date de fin</th>
                         <th>Taux d`Amortissement</th>
                         <th>Valeur actuelle</th>
+                        <th>Actions</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,23 @@ export function PossessionsList() {
                                 <td>{new Date(element.dateFin).toLocaleDateString()}</td>
                                 <td>{element.tauxAmortissement}</td>
                                 <td>{Math.abs(element.actualValue)}</td>
+                                <td>
+                                    <Button 
+                                        variant="primary" 
+                                        size="sm" 
+                                        onClick={() => null }
+                                        className="me-2"
+                                    >
+                                        Edit
+                                    </Button>
+                                    <Button 
+                                        variant="danger" 
+                                        size="sm" 
+                                        onClick={() =>  null}
+                                    >
+                                        Close
+                                    </Button>
+                                </td>
                             </tr>
                         ))
                     }
