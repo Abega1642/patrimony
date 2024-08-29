@@ -73,7 +73,7 @@ function LineChart() {
     };
 
     return (
-        <section className=''>
+        <section className='d-flex flex-wrap'>
             <div className='card col-md-6 offset-md-3 mt-5 p-4 shadow-lg'>
                 <h3 className='text-center mb-4'>Graphique en ligne des valeurs de patrimoine</h3>
                 <div className='chart-container bg-light p-3 rounded'>
