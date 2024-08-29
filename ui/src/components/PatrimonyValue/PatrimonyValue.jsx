@@ -36,7 +36,7 @@ function PatrimonyValue() {
 
     return (
         <>  
-            <section id="actualValue" className="brd-styled">
+            <section className="brd-styled shrink">
                 <h2 className="text-center my-6 text-primary">
                     Évaluez la Puissance de Votre Patrimoine
                 </h2>

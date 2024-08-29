@@ -38,7 +38,7 @@ function App() {
               </section>
               </main>
             } />
-            <Route path='/possession/add' element = {
+            <Route path='/possession/create' element = {
                 <AddPossession/>
               } 
             />
