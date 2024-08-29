@@ -9,7 +9,7 @@ import AddPossession from "./components/actions/AddPossession.jsx";
 import AddPossessionSection from "./components/addPossessionSection/AddPossessionSection.jsx";
 import LineChart from "./components/Chart/LineChart.jsx";
 import Dashboard from "./components/UnchangedComponents/Dashboard.jsx";
-
+import UpdatePossession from "./components/actions/Update.jsx";
 
 function App() {
 
@@ -44,6 +44,11 @@ function App() {
                 </main>
               } 
             />
+            <Route path='/possession/:id/update' element = {
+                <main className="main">
+                  <UpdatePossession/>
+                </main>
+            }/>
           </Routes>
         <Footer />
       </BrowserRouter>

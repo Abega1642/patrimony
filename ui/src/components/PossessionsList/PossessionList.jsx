@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { BASE_URL } from '../../functions_constants/backendUrl.js';
+import { useNavigate } from 'react-router-dom';
 
 export function PossessionsList() {
     const [possessions, setPossessions] = useState([]);
+    const navigate = useNavigate();
 
     async function fetchDatas() {
         try {
@@ -28,6 +30,11 @@ export function PossessionsList() {
             console.error('Erreur lors de la fermeture de la possession:', error);
         }
     }
+    const update = (lib) => {
+        navigate(`/possession/:${lib}/update`)
+        
+    }
+    
     useEffect(() => {
         fetchDatas();
     }, []);
@@ -64,7 +71,7 @@ export function PossessionsList() {
                                     <Button 
                                         variant="primary" 
                                         size="sm" 
-                                        onClick={() => null}
+                                        onClick={() => update(element.libelle)}
                                         className="me-2"
                                     >
                                         Edit
