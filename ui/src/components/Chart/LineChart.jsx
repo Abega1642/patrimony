@@ -2,59 +2,68 @@ import { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { BASE_URL } from '../../functions_constants/backendUrl';
+import getMonthlyDates from '../../functions_constants/chartAbcisse';
+
+function useDate(monthsAhead) {
+    const [date, setDate] = useState(() => {
+        const currentDate = new Date();
+        currentDate.setMonth(currentDate.getMonth() + monthsAhead);
+        return currentDate;
+    });
+
+    return [date, setDate];
+}
 
 function LineChart() { 
-    const [datas, setDatas] = useState([]);
-    const [startDate, setStart] = useState(new Date());
-    const [endDate, setEnd] = useState(new Date());
+    
+    const [values, setValues] = useState([]);
+    const [startDate, setStart] = useDate(-2);
+    const [endDate, setEnd] = useDate(3);    
     const [day, setDay] = useState(1);
 
     useEffect(() => {
-        async function fetchDatas() {
-            try {
-                const post = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        type: "month",
-                        start: new Date(startDate).toISOString(),
-                        end: new Date(endDate).toISOString(),
-                        day: day
-                    })
+        getCurve();
+    }, [])
+
+    const getCurve = async () => {
+        console.log(endDate)
+        try {
+            const post = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type: "month",
+                    start: new Date(startDate).toISOString(),
+                    end: new Date(endDate).toISOString(),
+                    day: day
+                })
                 };
+            let response = await fetch(BASE_URL + '/patrimoine/range', post);
 
-                let response = await fetch(BASE_URL + '/patrimoine/range', post);
-
-                if (response.ok) {
-                    let result = await response.json();
-
-                    console.log(result.patrimony_values)
-                    if (result.patrimony_values && Array.isArray(result.patrimony_values)) {
-                        setDatas(result.patrimony_values);
-                    } else {
-                        console.warn('Format des données inattendu:', result);
-                    }
+            if (response.ok) {
+                let result = await response.json();
+                if (result.patrimony_values && Array.isArray(result.patrimony_values)) {
+                    setValues(result.patrimony_values);
+                        
                 } else {
-                    console.error('Erreur de réponse:', response.status, response.statusText);
+                        console.warn('Format des données inattendu:', result);
                 }
-            } catch (error) {
-                console.error('Erreur lors de la récupération des données:', error);
-            }
+            } else {
+                console.error('Erreur de réponse:', response.status, response.statusText);
+            }      
+        } catch (error) {
+            console.error('Erreur lors de la récupération des données:', error);
         }
-
-        if (startDate && endDate && day) {
-            fetchDatas();
-        }
-    }, [startDate, endDate, day]);
+    }
 
     const data = {
-        labels: datas.map((_, index) => `Point ${index + 1}`),
+        labels: getMonthlyDates(startDate, endDate, day),
         datasets: [
             {
-                label: 'Valeurs de patrimoine',
-                data: datas,
+                label: 'Valeur de patrimoine',
+                data: values,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: true,
@@ -64,47 +73,57 @@ function LineChart() {
     };
 
     return (
-        <>
-            <div className='card col-md-6 offset-md-3 mt-5'>
-                <h3>Observer l`évolution de votre patrimoine</h3>
-                <form >
-                    <div>
-                        <label >Sélectionner le début de l`évolution</label>
+        <section className=''>
+            <div className='card col-md-6 offset-md-3 mt-5 p-4 shadow-lg'>
+                <h3 className='text-center mb-4'>Graphique en ligne des valeurs de patrimoine</h3>
+                <div className='chart-container bg-light p-3 rounded'>
+                    <Line data={data} />
+                </div>
+            </div>      
+            <div className='card col-md-6 offset-md-3 mt-5 p-4 shadow-lg'>
+                <h3 className='text-center mb-4'>Observer l`évolution de votre patrimoine</h3>
+                <form>
+                    <div className='form-group mb-3'>
+                        <label className='form-label'>Sélectionner le début de l`évolution</label>
                         <input 
                             type="date" 
-                            name="dateDébut" 
+                            name="dateDebut" 
                             id="dateDebut"
+                            className='form-control'
                             onChange={e => setStart(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <label>Sélectionner la fin de l`évolution</label>
+                    <div className='form-group mb-3'>
+                        <label className='form-label'>Sélectionner la fin de l`évolution</label>
                         <input 
                             type="date" 
-                            name="dateDébut" 
-                            id="dateDebut"
+                            name="dateFin" 
+                            id="dateFin"
+                            className='form-control'
                             onChange={e => setEnd(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <label htmlFor="">Entrer un jour d'évolution</label>
+                    <div className='form-group mb-4'>
+                        <label className='form-label'>Entrer un jour d`évolution</label>
                         <input 
-                            type="text" 
+                            type="number" 
                             name="day" 
                             placeholder='15'
+                            className='form-control'
                             onChange={e => setDay(Number.parseInt(e.target.value))}
                         />
                     </div>
+                    <div className='text-center'>
+                        <button 
+                            type="button" 
+                            className='btn btn-primary'
+                            onClick={getCurve}>
+                            Voir l`évolution
+                        </button>
+                    </div>
                 </form>
-                {}
             </div>
-            <div className='card col-md-6 offset-md-3 mt-5'>
-                <h3>Graphique en ligne des valeurs de patrimoine</h3>
-                <div className='chart-container'>
-                    <Line data={data} />
-                </div>
-            </div>
-        </>
+        </section>
     );
 }
 

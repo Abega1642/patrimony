@@ -19,7 +19,7 @@
                     "libelle": "MacBook Pro",
                     "valeur": 4000000,
                     "dateDebut": "2024-08-19T00:00:00.000Z",
-                    "dateFin": null,
+                    "dateFin": "2024-08-29T14:03:56.364Z",
                     "tauxAmortissement": 50
                 },
                 {
@@ -39,7 +39,7 @@
                     "libelle": "Clothes",
                     "valeur": 3500000,
                     "dateDebut": "2024-08-19T00:00:00.000Z",
-                    "dateFin": null,
+                    "dateFin": "2024-08-29T14:03:55.030Z",
                     "tauxAmortissement": 20
                 },
                 {
@@ -49,7 +49,7 @@
                     "libelle": "Alternance",
                     "valeur": 600000,
                     "dateDebut": "2024-08-19T00:00:00.000Z",
-                    "dateFin": null,
+                    "dateFin": "2024-08-29T14:03:53.545Z",
                     "tauxAmortissement": 0,
                     "jour": 29,
                     "valeurConstante": 600000

@@ -5,7 +5,7 @@
     border-width: 0;
 }
 body{
-    width: 100dvw;
+    width: 100%;
 }
 i {
     font-weight: bolder;
@@ -59,4 +59,9 @@ i {
 }
 .mb-7 {
     margin-bottom: 8dvw;
+}
+.chrt {
+    display: flex;
+    flex-wrap: wrap;
+    border: solid black 1px;
 }

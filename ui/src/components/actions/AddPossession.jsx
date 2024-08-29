@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 function AddPossession() {
     const [libelle, setLibelle] = useState('');
-    const [valeur, setValeur] = useState(0);
+    const [valeur, setValeur] = useState('');
     const [dateDebut, setDateDebut] = useState(new Date());
     const [dateFin, setDateFin] = useState(null);
-    const [tauxAmortissement, setTauxAmortissement] = useState(0);
+    const [tauxAmortissement, setTauxAmortissement] = useState('');
     const navigation = useNavigate();
 
     const addPossession = async () => {
@@ -69,7 +69,7 @@ function AddPossession() {
                         setField={setValeur} 
                         type={"text"} 
                         label={"Valeur :"}
-                        placeholder={"Valeur générale de la possession ..."}
+                        placeholder={"Valeur de la possession ... Exemple : 100005.4865"}
                     />
                     <div>
                         <label >Date de commencement</label>
@@ -96,7 +96,7 @@ function AddPossession() {
                         setField={setTauxAmortissement} 
                         type={"text"}
                         label={"Taux d'amortissement :"}
-                        placeholder={"Valeur générale de la possession ..."}
+                        placeholder={"Taux d'amotissement... Ex : -5.785 ou bien 12.5"}
                     />
                 </div>
                 <button 
