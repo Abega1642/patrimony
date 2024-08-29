@@ -39,7 +39,9 @@ function App() {
               </main>
             } />
             <Route path='/possession/create' element = {
-                <AddPossession/>
+                <main className="main">
+                  <AddPossession/>
+                </main>
               } 
             />
           </Routes>

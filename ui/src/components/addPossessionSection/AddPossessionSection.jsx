@@ -4,7 +4,7 @@ function AddPossessionSection() {
     const navigation = useNavigate();
 
     const handleAddPossession = () => {
-       navigation('/possession/add')
+       navigation('/possession/create')
     };
 
     return (
