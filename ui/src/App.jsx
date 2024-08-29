@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AddPossession from "./components/actions/AddPossession.jsx";
 import AddPossessionSection from "./components/addPossessionSection/AddPossessionSection.jsx";
 import LineChart from "./components/Chart/LineChart.jsx";
+import Dashboard from "./components/UnchangedComponents/Dashboard.jsx";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
           <Routes>
-            <Route path='/possession' element = {
+            <Route path={'/possession' || '/'} element = {
               <main className="main">
                 <PossessionsList />
                 <AddPossessionSection />
@@ -26,8 +27,15 @@ function App() {
             />
             <Route path='/patrimoine' element = {
               <main className="main">
-                <LineChart />
-                <PatrimonyValue />
+                <Dashboard />
+                <section className="ptr-section">
+                  <div id="graph">
+                    <LineChart />
+                  </div>
+                  <div id="values">
+                    <PatrimonyValue />
+                  </div>
+              </section>
               </main>
             } />
             <Route path='/possession/add' element = {
