@@ -42,7 +42,7 @@ export async function getPatrimonyValueByDate(date) {
 
     const possessionsData = await getAllPossessions();
     
-    const possessions = possessionsData.map(possessionData => {
+    let possessions = possessionsData.map(possessionData => {
         const numParams = Object.keys(possessionData).length;
         const isFlux = (numParams === 8);
         if (isFlux) {
@@ -52,7 +52,8 @@ export async function getPatrimonyValueByDate(date) {
                 possessionData.libelle,
                 possessionData.valeurConstante,
                 new Date(possessionData.dateDebut),
-                new Date(possessionData.dateFin),
+                possessionData.dateFin == null ? 
+                null : new Date(possessionData.dateFin),
                 possessionData.tauxAmortissement,
                 possessionData.jour
             );
@@ -64,14 +65,21 @@ export async function getPatrimonyValueByDate(date) {
                 possessionData.libelle,
                 possessionData.valeur,
                 new Date(possessionData.dateDebut),
-                new Date(possessionData.dateFin),
+                possessionData.dateFin == null ? 
+                null : new Date(possessionData.dateFin),
                 possessionData.tauxAmortissement
             );
         }
     });
 
+    possessions = possessions.sort((a,b) => a.dateDebut - b.dateDebut)
+                                .filter(possession => {
+                                    if (possession.dateFin == null || possession.dateFin > new Date(date))
+                                    return possession
+                                });
+                                
     const Patrimony = new Patrimoine("", possessions);
-
-    return Patrimony.getValeur(date);
+    
+    return (new Date(date) < possessions[0].dateDebut) ? 0 : Patrimony.getValeur(date);
 
 }
