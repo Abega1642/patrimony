@@ -11,7 +11,7 @@ function PatrimonyValue() {
         async function fetchDatas() {
             var result = await fetch(BASE_URL + '/patrimoine/:' + `${new Date().toISOString().split('T')[0]}`)
             result = await result.json();
-            console.log(result.value);
+            
             setPatrimonyValueAtNow(result.value)   
         }
         fetchDatas();
@@ -21,7 +21,6 @@ function PatrimonyValue() {
         async function fetchDatas2() {
             var result = await fetch(BASE_URL + '/patrimoine/:' + `${evaluationDate.toISOString().split('T')[0]}`)
             result = await result.json()
-            console.log(result.value);
             
             setPatrimonyValueAtSelectedDate(result.value)
         }

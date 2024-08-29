@@ -18,9 +18,9 @@
                     },
                     "libelle": "MacBook Pro",
                     "valeur": 4000000,
-                    "dateDebut": "2024-02-03T00:00:00.000Z",
+                    "dateDebut": "2024-08-19T00:00:00.000Z",
                     "dateFin": null,
-                    "tauxAmortissement": 5
+                    "tauxAmortissement": 50
                 },
                 {
                     "possesseur": {
@@ -28,7 +28,7 @@
                     },
                     "libelle": "Compte épargne",
                     "valeur": 500000,
-                    "dateDebut": "2024-01-06T00:00:00.000Z",
+                    "dateDebut": "2024-08-19T00:00:00.000Z",
                     "dateFin": null,
                     "tauxAmortissement": -5
                 },
@@ -38,7 +38,7 @@
                     },
                     "libelle": "Clothes",
                     "valeur": 3500000,
-                    "dateDebut": "2024-02-03T00:00:00.000Z",
+                    "dateDebut": "2024-08-19T00:00:00.000Z",
                     "dateFin": null,
                     "tauxAmortissement": 20
                 },
@@ -48,10 +48,10 @@
                     },
                     "libelle": "Alternance",
                     "valeur": 600000,
-                    "dateDebut": "2024-01-06T00:00:00.000Z",
+                    "dateDebut": "2024-08-19T00:00:00.000Z",
                     "dateFin": null,
                     "tauxAmortissement": 0,
-                    "jour": 1,
+                    "jour": 29,
                     "valeurConstante": 600000
                 },
                 {
@@ -60,61 +60,11 @@
                     },
                     "libelle": "Survie",
                     "valeur": 300000,
-                    "dateDebut": "2024-01-06T00:00:00.000Z",
+                    "dateDebut": "2024-08-09T00:00:00.000Z",
                     "dateFin": null,
                     "tauxAmortissement": 0,
                     "jour": 2,
                     "valeurConstante": -300000
-                },
-                {
-                    "possesseur": {
-                        "nom": "John Doe"
-                    },
-                    "libelle": "Nouvelle possession",
-                    "valeur": 1000000,
-                    "dateDebut": "2024-08-27T00:00:00.000Z",
-                    "dateFin": null,
-                    "tauxAmortissement": 5
-                },
-                {
-                    "possesseur": {
-                        "nom": "John Doe"
-                    },
-                    "libelle": "This is a new test about adding possession",
-                    "valeur": 1000000,
-                    "dateDebut": "2024-08-27T00:00:00.000Z",
-                    "dateFin": null,
-                    "tauxAmortissement": 5
-                },
-                {
-                    "possesseur": {
-                        "nom": "John Doe"
-                    },
-                    "libelle": "Nouvelle ",
-                    "valeur": 1000000,
-                    "dateDebut": "2024-08-27T00:00:00.000Z",
-                    "dateFin": null,
-                    "tauxAmortissement": 5
-                },
-                {
-                    "possesseur": {
-                        "nom": "John Doe"
-                    },
-                    "libelle": "Nouvelle test de création updated",
-                    "valeur": 1000000,
-                    "dateDebut": "2024-08-27T00:00:00.000Z",
-                    "dateFin": null,
-                    "tauxAmortissement": 5
-                },
-                {
-                    "possesseur": {
-                        "nom": "John Doe"
-                    },
-                    "libelle": "changer de nom",
-                    "valeur": 10000004,
-                    "dateDebut": "2024-08-27T00:00:00.000Z",
-                    "dateFin": null,
-                    "tauxAmortissement": 5
                 }
             ]
         }

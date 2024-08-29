@@ -7,6 +7,7 @@ import PatrimonyValue from "./components/PatrimonyValue/PatrimonyValue.jsx";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AddPossession from "./components/actions/AddPossession.jsx";
 import AddPossessionSection from "./components/addPossessionSection/AddPossessionSection.jsx";
+import LineChart from "./components/Chart/LineChart.jsx";
 
 
 function App() {
@@ -24,7 +25,10 @@ function App() {
               } 
             />
             <Route path='/patrimoine' element = {
-              <PatrimonyValue />
+              <main className="main">
+                <LineChart />
+                <PatrimonyValue />
+              </main>
             } />
             <Route path='/possession/add' element = {
                 <AddPossession/>
