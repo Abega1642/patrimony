@@ -57,6 +57,16 @@ i {
 
 }
 
+.ext {
+    height: 78dvh;
+    position: relative;
+    align-items: center;
+
+}
+.ext1 {
+    margin-top: 15dvh !important;
+
+}
 .ml-7 {
     margin-inline: 5dvw;
 }

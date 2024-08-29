@@ -55,11 +55,11 @@ function UpdatePossession() {
     }
 
   return (
-    <div className='container mb-8 w-m5'>
+    <div className='container mb-8 w-m5 ext'>
         <div className='row'>
-            <aside className='card col-md-6 offset-md-3 mt-5'>
-                <h3 className='text-center mt-3'>
-                    Ajouté une nouvelle possession
+            <aside className='card col-md-6 offset-md-3 mt-5 ext1'>
+                <h3 className='text-center mt-3 text-primary'>
+                    Éditer la description de votre possession
                 </h3>
                 <div className='card-body '>
                     <Inputs 
@@ -68,7 +68,7 @@ function UpdatePossession() {
                         setField={setLibelle} 
                         type={"text"} 
                         label={"Libellé :"}
-                        placeholder={"Nom de la possession ..."}
+                        placeholder={"Nouvelle nom de la possession ..."}
                     />
                     <div>
                         <label >Date de fin</label>
