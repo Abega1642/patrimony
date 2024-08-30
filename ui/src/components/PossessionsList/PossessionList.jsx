@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { BASE_URL } from '../../functions_constants/backendUrl.js';
 import { useNavigate } from 'react-router-dom';
+import { FaEdit, FaTrashAlt, FaDollarSign } from 'react-icons/fa';
 
 export function PossessionsList() {
     const [possessions, setPossessions] = useState([]);
@@ -16,6 +17,7 @@ export function PossessionsList() {
             console.error('Erreur lors du fetch des possessions:', error);
         }
     }
+
     async function close(index) {
         try {
             const libelle = possessions[index].libelle;
@@ -30,9 +32,9 @@ export function PossessionsList() {
             console.error('Erreur lors de la fermeture de la possession:', error);
         }
     }
+
     const update = (lib) => {
-        navigate(`/possession/:${lib}/update`)
-        
+        navigate(`/possession/:${lib}/update`);
     }
     
     useEffect(() => {
@@ -41,18 +43,18 @@ export function PossessionsList() {
 
     return (
         <>
-            <h2 className="text-center my-6 text-primary">
-                Liste de votre patrimoine
+            <h2 className="text-center my-5 text-primary font-weight-bold">
+                <FaDollarSign className="me-2" /> Liste de Votre Patrimoine
             </h2>
-            <Table striped bordered hover className="mt-5 mg-x" id='possession'>
-                <thead>
+            <Table striped bordered hover className="mt-5" id='possession'>
+                <thead className="table-primary">
                     <tr>
                         <th>Libellé</th>
                         <th>Valeur</th>
-                        <th>Date de début</th>
-                        <th>Date de fin</th>
+                        <th>Date de Début</th>
+                        <th>Date de Fin</th>
                         <th>Taux d`Amortissement</th>
-                        <th>Valeur actuelle</th>
+                        <th>Valeur Actuelle</th>
                         <th>Actions</th> 
                     </tr>
                 </thead>
@@ -63,25 +65,25 @@ export function PossessionsList() {
                                 <td>{element.libelle}</td>
                                 <td>{element.valeur}</td>
                                 <td>{new Date(element.dateDebut).toLocaleDateString()}</td>
-                                <td>{element.dateFin == null ?
-                                "---" : new Date(element.dateFin).toLocaleDateString()}</td>
-                                <td>{element.tauxAmortissement}</td>
+                                <td>{element.dateFin == null ? "---" : new Date(element.dateFin).toLocaleDateString()}</td>
+                                <td>{element.tauxAmortissement} %</td>
                                 <td>{Math.abs(element.actualValue)}</td>
                                 <td>
                                     <Button 
-                                        variant="primary" 
+                                        variant="outline-primary" 
                                         size="sm" 
                                         onClick={() => update(element.libelle)}
-                                        className="me-2"
+                                        className="me-2 rounded-pill"
                                     >
-                                        Edit
+                                        <FaEdit /> Éditer
                                     </Button>
                                     <Button 
-                                        variant="danger" 
+                                        variant="outline-danger" 
                                         size="sm" 
                                         onClick={() => close(ind)}
+                                        className="rounded-pill"
                                     >
-                                        Close
+                                        <FaTrashAlt /> Clôturer
                                     </Button>
                                 </td>
                             </tr>
