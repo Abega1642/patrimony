@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../../functions_constants/backendUrl.js";
+import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { FaCalendarAlt, FaMoneyBillWave, FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 function PatrimonyValue() {
     const [patrimonyValueAtNow, setPatrimonyValueAtNow] = useState(0);
@@ -9,20 +11,18 @@ function PatrimonyValue() {
 
     useEffect(() => {
         async function fetchDatas() {
-            var result = await fetch(BASE_URL + '/patrimoine/:' + `${new Date().toISOString().split('T')[0]}`)
-            result = await result.json();
-            
-            setPatrimonyValueAtNow(result.value)   
+            const response = await fetch(BASE_URL + '/patrimoine/:' + `${new Date().toISOString().split('T')[0]}`);
+            const result = await response.json();
+            setPatrimonyValueAtNow(result.value);
         }
         fetchDatas();
     }, []);
 
     useEffect(() => {
         async function fetchDatas2() {
-            var result = await fetch(BASE_URL + '/patrimoine/:' + `${evaluationDate.toISOString().split('T')[0]}`)
-            result = await result.json()
-            
-            setPatrimonyValueAtSelectedDate(result.value)
+            const response = await fetch(BASE_URL + '/patrimoine/:' + `${evaluationDate.toISOString().split('T')[0]}`);
+            const result = await response.json();
+            setPatrimonyValueAtSelectedDate(result.value);
         }
         fetchDatas2();
     }, [evaluationDate]);
@@ -35,96 +35,110 @@ function PatrimonyValue() {
     };
 
     return (
-        <>  
-            <section className="brd-styled shrink">
-                <h2 className="text-center my-6 text-primary">
-                    Évaluez la Puissance de Votre Patrimoine
-                </h2>
-                <div className="ml-7 mt-5">
-                    <p className="lead">
-                    En ce jour précieux du{" "}
-                    <span className="fw-bold">
-                        {new Date().toLocaleDateString("fr-FR", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                        })}
-                    </span>
-                    , découvrez la valeur de votre patrimoine :
-                    </p>
-                    <form className="d-flex align-items-center p-3 shadow-sm rounded">
-                        <div className="form-group me-3">
-                            <label
-                            htmlFor="patrimonyValue"
-                            className="form-label values fw-bold fs-5"
-                            >
-                            Valeur :
-                            </label>
-                        </div>
-                        <div className="form-group vlu">
-                            <input
-                            className="form-control w-mx shadow text-primary fs-5 fs-bolder"
-                            type="text"
-                            value={`${patrimonyValueAtNow}  Ar `}
-                            readOnly
-                            />
-                        </div>
-                    </form>
-                </div>
-                <br />
-            </section>
+        <Container className="py-5" style={{ backgroundColor: '#f4f6f9' }}>
+            <Row className="mb-4">
+                <Col>
+                    <Card className="shadow-lg rounded-lg border-0 mb-4">
+                        <Card.Body>
+                            <h2 className="text-center text-primary mb-4">
+                                <FaMoneyBillWave className="me-2" />
+                                Évaluez la Puissance de Votre Patrimoine
+                            </h2>
+                            <p className="lead mb-4 text-center">
+                                Découvrez la valeur actuelle de votre patrimoine en ce jour précieux du{" "}
+                                <span className="fw-bold">
+                                    {new Date().toLocaleDateString("fr-FR", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                    })}
+                                </span>.
+                            </p>
+                            <Form className="d-flex align-items-center justify-content-center">
+                                <Form.Group className="me-3">
+                                    <Form.Label className="fw-bold fs-5 text-muted">
+                                        Valeur Actuelle :
+                                    </Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        value={`${patrimonyValueAtNow} Ar`}
+                                        readOnly
+                                        className="text-primary fs-5 text-center"
+                                        style={{ backgroundColor: '#ffffff', borderColor: '#dee2e6' }}
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
 
-            <section id="futurValue" className="brd-styled mb-7">
-                <h2 className="text-center my-6 text-primary">Évaluez Votre Patrimoine à la Date de Votre Choix</h2>
-                <div className="ml-7 mt-5">
-                    <form>
-                        <label className="form-label">
-                            Veuillez sélectionner la date à laquelle vous souhaitez évaluer la valeur de votre patrimoine :
-                        </label>
-                        <input
-                            className="form-control w-mx shadow-sm"
-                            type="date"
-                            name="evaluationDate"
-                            id="date"
-                            onChange={transfertValue}
-                        />
-                    </form>
-                    <div className="text-center mt-4">
-                        <button
-                            className="btn btn-success shadow-sm"
-                            onClick={handleDateChange}
-                        >
-                            Valider
-                        </button>
-                    </div>
-                    
-                    <div className="mt-4 p-3 rounded shadow-sm bg-light">
-                        <h3 className="mb-3">Évaluation pour :</h3>
-                        <p className="mb-2">
-                            Le jour du{" "}
-                            <strong>
-                                {evaluationDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
-                            </strong>
-                            :
-                        </p>
-                        <form className="d-flex align-items-center p-3 shadow-sm rounded">
-                            <label className="form-label m-1">
-                                Valuer :
-                            </label>
-                            <input 
-                                className="form-control w-mx shadow-sm text-primary fs-5 fs-bolder" 
-                                type="text" value={`${patrimonyValueAtSelectedDate} Ar`} 
-                                readOnly 
-                            />
-                        </form>
-                        
-                        
-                    </div>
-                </div>
-                <br />
-            </section>
-
-        </>
+            <Row className="mb-4">
+                <Col>
+                    <Card className="shadow-lg rounded-lg border-0 mb-4">
+                        <Card.Body>
+                            <h2 className="text-center text-primary mb-4">
+                                <FaCalendarAlt className="me-2" />
+                                Évaluez Votre Patrimoine à une Date Spécifique
+                            </h2>
+                            <Form>
+                                <Form.Group className="mb-4">
+                                    <Form.Label className="text-muted">
+                                        Sélectionnez la date pour évaluer la valeur de votre patrimoine :
+                                    </Form.Label>
+                                    <Form.Control
+                                        type="date"
+                                        name="evaluationDate"
+                                        id="date"
+                                        onChange={transfertValue}
+                                        style={{ backgroundColor: '#ffffff', borderColor: '#dee2e6' }}
+                                    />
+                                </Form.Group>
+                                <div className="text-center mb-4">
+                                    <Button
+                                        variant="success"
+                                        onClick={handleDateChange}
+                                    >
+                                        Valider
+                                    </Button>
+                                </div>
+                                <Card className="bg-light shadow-sm rounded-lg">
+                                    <Card.Body>
+                                        <h3 className="text-center mb-3">Évaluation pour :</h3>
+                                        <p className="text-center mb-2">
+                                            Le jour du{" "}
+                                            <strong>
+                                                {evaluationDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                            </strong>
+                                            :
+                                        </p>
+                                        <Form className="d-flex align-items-center justify-content-center">
+                                            <Form.Label className="m-1 text-muted">
+                                                Valeur :
+                                            </Form.Label>
+                                            <Form.Control 
+                                                type="text" 
+                                                value={`${patrimonyValueAtSelectedDate} Ar`} 
+                                                readOnly 
+                                                className="text-primary fs-5 text-center"
+                                                style={{ backgroundColor: '#ffffff', borderColor: '#dee2e6' }}
+                                            />
+                                        </Form>
+                                        <div className="text-center mt-3">
+                                            {patrimonyValueAtSelectedDate > patrimonyValueAtNow ? (
+                                                <FaArrowUp className="text-success fs-4" />
+                                            ) : (
+                                                <FaArrowDown className="text-danger fs-4" />
+                                            )}
+                                        </div>
+                                    </Card.Body>
+                                </Card>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

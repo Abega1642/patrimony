@@ -16,7 +16,7 @@ const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="shadow-sm">
       <Container>
-        <Navbar.Brand href="#home" className="fw-bold fs-3 text-primary">
+        <Navbar.Brand href="#home" className="fw-bold fs-3 txt-primary">
           <FaBitcoin className="me-2" /> Yε:rPatrimony <FaDollarSign className="ms-2" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
