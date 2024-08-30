@@ -1,4 +1,5 @@
-import { FaChartLine, FaMoneyBillWave } from 'react-icons/fa'; // Utilisation d'icônes de react-icons
+import { FaChartLine, FaMoneyBillWave, FaPlus, FaList } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   return (
@@ -14,6 +15,16 @@ const Dashboard = () => {
           <a href="#values">
             <FaMoneyBillWave /> Valeurs de Patrimoine
           </a>
+        </li>
+        <li>
+          <Link to="/possession" className="dashboard-menu-item">
+            <FaList className="dashboard-icon" /> Liste des possessions
+          </Link>
+        </li>
+        <li>
+          <Link to="/possession/create" className="dashboard-menu-item">
+            <FaPlus className="dashboard-icon" /> Ajout de possession
+          </Link>
         </li>
       </ul>
     </div>
