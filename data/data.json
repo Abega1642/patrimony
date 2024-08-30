@@ -92,11 +92,23 @@
                     "possesseur": {
                         "nom": "John Doe"
                     },
-                    "libelle": "Cecei est close",
+                    "libelle": "New possession updated",
                     "valeur": 1,
                     "dateDebut": "2024-08-30T13:22:30.130Z",
-                    "dateFin": "2024-08-30T13:38:29.773Z",
+                    "dateFin": "2024-08-30T15:01:10.989Z",
                     "tauxAmortissement": 0
+                },
+                {
+                    "possesseur": {
+                        "nom": "John Doe"
+                    },
+                    "libelle": "Try to add new possession of Abegà",
+                    "valeur": 135000,
+                    "dateDebut": "2024-08-28T00:00:00.000Z",
+                    "dateFin": "2024-08-30T15:03:20.636Z",
+                    "jour": 3,
+                    "tauxAmortissement": null,
+                    "valeurConstante": -135000
                 }
             ]
         }
