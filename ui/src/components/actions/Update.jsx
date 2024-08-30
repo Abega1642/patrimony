@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Inputs } from "./Inputs";
 import { BASE_URL } from "../../functions_constants/backendUrl";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { FaSave, FaTimes } from 'react-icons/fa'; // Importation des icônes
+import { FaSave, FaTimes } from 'react-icons/fa';
 
 function UpdatePossession() {
     const { id } = useParams();

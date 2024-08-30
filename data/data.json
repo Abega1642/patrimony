@@ -65,6 +65,16 @@
                     "tauxAmortissement": 0,
                     "jour": 2,
                     "valeurConstante": -300000
+                },
+                {
+                    "possesseur": {
+                        "nom": "John Doe"
+                    },
+                    "libelle": "Lasa tss anarana le izy",
+                    "valeur": 1,
+                    "dateDebut": "2024-08-30T10:16:03.471Z",
+                    "dateFin": null,
+                    "tauxAmortissement": 0
                 }
             ]
         }
