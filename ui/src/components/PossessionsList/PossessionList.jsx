@@ -46,7 +46,7 @@ export function PossessionsList() {
             <h2 className="text-center my-5 text-primary font-weight-bold">
                 <FaDollarSign className="me-2" /> Liste de Votre Patrimoine
             </h2>
-            <Table striped bordered hover className="mt-5" id='possession'>
+            <Table striped bordered hover className="mt-5 mgr-10" id='possession'>
                 <thead className="table-primary">
                     <tr>
                         <th>Libellé</th>
