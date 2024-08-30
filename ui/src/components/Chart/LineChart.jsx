@@ -4,7 +4,8 @@ import { Chart as ChartJS } from 'chart.js/auto';
 import { BASE_URL } from '../../functions_constants/backendUrl';
 import getMonthlyDates from '../../functions_constants/chartAbcisse';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { FaChartLine, FaCalendarDay, FaCalendarAlt, FaSearch } from 'react-icons/fa';
+import { FaChartLine, FaCalendarDay, FaCalendarAlt, FaSearch, FaExclamationTriangle } from 'react-icons/fa';
+import DayPicker from './DayPicker';
 
 function useDate(monthsAhead) {
     const [date, setDate] = useState(() => {
@@ -21,13 +22,33 @@ function LineChart() {
     const [values, setValues] = useState([]);
     const [startDate, setStart] = useDate(-2);
     const [endDate, setEnd] = useDate(3);    
-    const [day, setDay] = useState(1);
+    const [day, setDay] = useState(3);
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         getCurve();
     }, [])
 
+    const validateDates = (start, end) => {
+        const minEndDate = new Date(start);
+        minEndDate.setMonth(minEndDate.getMonth() + 1);
+
+        const newErrors = {};
+        if (end < minEndDate) {
+            newErrors.endDate = "Veuillez sélectionner une date distante d'au moins un mois de la date de début.";
+        }
+        setErrors(newErrors);
+
+        setTimeout(() => setErrors({}), 5500);
+
+        return Object.keys(newErrors).length === 0;
+    }
+
     const getCurve = async () => {
+        if (!validateDates(startDate, endDate)) {
+            return;
+        }
+
         try {
             const post = {
                 method: 'POST',
@@ -40,7 +61,7 @@ function LineChart() {
                     end: new Date(endDate).toISOString(),
                     day: day
                 })
-                };
+            };
             let response = await fetch(BASE_URL + '/patrimoine/range', post);
 
             if (response.ok) {
@@ -102,7 +123,7 @@ function LineChart() {
                                 <Form.Group className='mb-3'>
                                     <Form.Label className='d-flex align-items-center'>
                                         <FaCalendarDay className='me-2 text-primary' />
-                                        Sélectionner le début de l`évolution
+                                        Sélectionner le début de l`évolution :
                                     </Form.Label>
                                     <Form.Control
                                         type="date"
@@ -114,38 +135,42 @@ function LineChart() {
                                 <Form.Group className='mb-3'>
                                     <Form.Label className='d-flex align-items-center'>
                                         <FaCalendarDay className='me-2 text-primary' />
-                                        Sélectionner la fin de l`évolution
+                                        Sélectionner la fin de l`évolution :
                                     </Form.Label>
                                     <Form.Control
                                         type="date"
                                         name="dateFin"
                                         id="dateFin"
-                                        onChange={e => setEnd(new Date(e.target.value))}
+                                        onChange={e => {
+                                            const newEndDate = new Date(e.target.value);
+                                            if (validateDates(startDate, newEndDate)) {
+                                                setEnd(newEndDate);
+                                            }
+                                        }}
                                     />
+                                    {errors.endDate && <div className="text-danger mt-2">
+                                        <FaExclamationTriangle /> {errors.endDate}
+                                    </div>}
                                 </Form.Group>
-                                <Form.Group className='mb-4'>
+                                <Form.Group className='mb-3'>
                                     <Form.Label className='d-flex align-items-center'>
-                                        <FaSearch className='me-2 text-primary' />
-                                        Entrer un jour d\évolution
+                                        <FaCalendarDay className='me-2 text-primary' />
+                                        Sélectionner la jour de l`évolution :
                                     </Form.Label>
-                                    <Form.Control
-                                        type="number"
-                                        name="day"
-                                        placeholder='15'
-                                        onChange={e => setDay(Number.parseInt(e.target.value))}
-                                    />
+                                    <DayPicker setDate={setDay}/>
                                 </Form.Group>
-                                <div className='text-center'>
-                                    <Button
-                                        variant="primary"
-                                        className='shadow-sm'
-                                        onClick={getCurve}
-                                    >
-                                        <FaSearch className='me-2' />
-                                        Voir l`Évolution
-                                    </Button>
-                                </div>
-                            </Form>
+                                    <div className='text-center'>
+                                        <Button
+                                            variant="primary"
+                                            className='shadow-sm'
+                                            onClick={getCurve}
+                                        >
+                                            <FaSearch className='me-2' />
+                                            Voir l`Évolution
+                                        </Button>
+                                    </div>
+                                </Form>
+                                
                         </Card.Body>
                     </Card>
                 </Col>
