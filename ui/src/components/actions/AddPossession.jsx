@@ -4,7 +4,7 @@ import { BASE_URL } from "../../functions_constants/backendUrl";
 import { useNavigate } from "react-router-dom";
 import FluxRadio from "./FluxRadio";
 import requestBody from "./correspondingRequestBody";
-import { FaExclamationTriangle } from "react-icons/fa";
+import { FaExclamationTriangle, FaCalendarAlt, FaDollarSign, FaPercent, FaTimesCircle } from "react-icons/fa";
 
 function AddPossession() {
     const [libelle, setLibelle] = useState('');
@@ -85,72 +85,94 @@ function AddPossession() {
         }
     }
 
+    const cancelAdd = () => {
+        navigate('/possession');
+    }
+
     return (
-        <main className="main">
-            <div className='container mb-8 w-m5'>
-                <div className='row'>
-                    <aside className='card col-md-6 offset-md-3 mt-5'>
-                        <h3 className='text-center mt-3'>
-                            Ajouté une nouvelle possession
-                        </h3>
-                        <div className='card-body '>
-                            <div className="form-group">
+        <main className="main bg-light py-5">
+            <div className="container mb-8 w-75">
+                <div className="row justify-content-center">
+                    <aside className="card col-md-8">
+                        <div className="card-body p-4 rounded shadow-lg bg-white">
+                            <h3 className="text-center mb-4 text-primary font-weight-bold">
+                                ✨ Ajouter une Nouvelle Possession
+                            </h3>
+                            <p className="lead text-center text-muted mb-4">
+                                Enregistrez vos possessions avec précision pour un suivi optimal de leur valeur et une gestion efficace de votre patrimoine.
+                            </p>
+                            <div className="form-group mb-3">
+                                <label className="form-label d-flex align-items-center">
+                                    <FaDollarSign className="me-2" /> Libellé :
+                                </label>
                                 <Inputs 
-                                    className={"gp-3"}
+                                    className="form-control"
                                     field={libelle} 
                                     setField={setLibelle} 
-                                    type={"text"} 
-                                    label={"Libellé :"}
-                                    placeholder={"Nom de la possession ..."}
+                                    type="text" 
+                                    placeholder="Nom de la possession ..."
                                 />
-                                {errors.libelle && <div className="text-danger">
+                                {errors.libelle && <div className="text-danger mt-2">
                                     <FaExclamationTriangle /> {errors.libelle}
                                 </div>}
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mb-3">
+                                <label className="form-label d-flex align-items-center">
+                                    <FaDollarSign className="me-2" /> Valeur :
+                                </label>
                                 <Inputs 
-                                    className={"gp-3"}
+                                    className="form-control"
                                     field={valeur} 
                                     setField={setValeur}
-                                    type={"text"} 
-                                    label={"Valeur :"}
-                                    placeholder={"Valeur de la possession ... Ex : 100005.4865"}
+                                    type="text" 
+                                    placeholder="Valeur de la possession ... Ex : 100005.4865"
                                 />
-                                {errors.valeur && <div className="text-danger">
+                                {errors.valeur && <div className="text-danger mt-2">
                                     <FaExclamationTriangle /> {errors.valeur}
                                 </div>}
                             </div>
-                            <div>
-                                <label>Date de commencement</label>
+                            <div className="form-group mb-3">
+                                <label className="form-label d-flex align-items-center">
+                                    <FaCalendarAlt className="me-2" /> Date de commencement
+                                </label>
                                 <input
-                                    className="form-control w-mx shadow-sm gp-3"
+                                    className="form-control shadow-sm"
                                     type="date"
                                     name="evaluationDate"
                                     id="date"
                                     onChange={(e) => setDateDebut(new Date(e.target.value))}
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mb-3">
+                                <label className="form-label d-flex align-items-center">
+                                    <FaPercent className="me-2" /> Taux d`amortissement :
+                                </label>
                                 <Inputs 
-                                    className={"gp-3"}
+                                    className="form-control"
                                     field={tauxAmortissement} 
                                     setField={setTauxAmortissement} 
-                                    type={"text"}
-                                    label={"Taux d'amortissement :"}
-                                    placeholder={"Taux d'amotissement... Ex : -5.785 ou bien 12.5"}
+                                    type="text"
+                                    placeholder="Taux d'amortissement ... Ex : -5.785 ou 12.5"
                                 />
-                                {errors.tauxAmortissement && <div className="text-danger">
+                                {errors.tauxAmortissement && <div className="text-danger mt-2">
                                     <FaExclamationTriangle /> {errors.tauxAmortissement}
                                 </div>}
                             </div>
-                            <div className="d-flex">
-                                <FluxRadio checked={isChecked("Flux-entrant")} name={"Flux-entrant"} onChange={handleTypeChange} />
-                                <FluxRadio checked={isChecked("Flux-sortant")} name={"Flux-sortant"} onChange={handleTypeChange} />
-                                <FluxRadio checked={isChecked("Autres")} name={"Autres"} onChange={handleTypeChange} />
+                            <div className="form-group mb-4">
+                                <label className="form-label d-flex align-items-center">
+                                    <FaExclamationTriangle className="me-2" /> Type :
+                                </label>
+                                <div className="d-flex gap-2">
+                                    <FluxRadio checked={isChecked("Flux-entrant")} name="Flux-entrant" onChange={handleTypeChange} />
+                                    <FluxRadio checked={isChecked("Flux-sortant")} name="Flux-sortant" onChange={handleTypeChange} />
+                                    <FluxRadio checked={isChecked("Autres")} name="Autres" onChange={handleTypeChange} />
+                                </div>
                             </div>
                             {type !== "Autres" && (
-                                <div className='form-group mb-4'>
-                                    <label className='form-label'>Entrer un jour d`entré ou du sortie du flux</label>
+                                <div className="form-group mb-4">
+                                    <label className="form-label d-flex align-items-center">
+                                        <FaCalendarAlt className="me-2" /> Entrer un jour d`entrée ou de sortie du flux
+                                    </label>
                                     <input 
                                         type="number" 
                                         name="day" 
@@ -166,18 +188,26 @@ function AddPossession() {
                                             }
                                         }}
                                     />
-                                    {errors.jour && <div className="text-danger">
+                                    {errors.jour && <div className="text-danger mt-2">
                                         <FaExclamationTriangle /> {errors.jour}
                                     </div>}
                                 </div>
                             )}
+                            <div className="text-center mt-4">
+                                <button 
+                                    className="btn btn-success btn-lg shadow-sm me-2"
+                                    onClick={addPossession}
+                                >
+                                    <FaDollarSign className="me-2" /> Ajouter
+                                </button>
+                                <button 
+                                    className="btn btn-secondary btn-lg shadow-sm"
+                                    onClick={cancelAdd}
+                                >
+                                    <FaTimesCircle className="me-2" /> Annuler
+                                </button>
+                            </div>
                         </div>
-                        <button 
-                            className="btn btn-success m-3"
-                            onClick={addPossession}
-                        >
-                            Add
-                        </button>
                     </aside>
                 </div>
             </div>
