@@ -1,15 +1,12 @@
 import { Footer } from "./components/UnchangedComponents/Footer.jsx";
 import NavBar from "./components/UnchangedComponents/Navbar.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { PossessionsList } from "./components/PossessionsList/PossessionList.jsx";
 import './App.css'
-import PatrimonyValue from "./components/PatrimonyValue/PatrimonyValue.jsx";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AddPossession from "./components/actions/AddPossession.jsx";
-import AddPossessionSection from "./components/addPossessionSection/AddPossessionSection.jsx";
-import LineChart from "./components/Chart/LineChart.jsx";
-import Dashboard from "./components/UnchangedComponents/Dashboard.jsx";
 import UpdatePossession from "./components/actions/Update.jsx";
+import PatrimonyPage from "./components/PatrimoinePage/PatrimonyPage.jsx";
+import PossessionPage from "./components/PossessionPage/PossessionPage.jsx";
 
 function App() {
 
@@ -18,37 +15,10 @@ function App() {
       <BrowserRouter>
         <NavBar />
           <Routes>
-            <Route path={'/possession' || '/'} element = {
-              <main className="main">
-                <PossessionsList />
-                <AddPossessionSection />
-              </main>
-              } 
-            />
-            <Route path='/patrimoine' element = {
-              <main className="main">
-                <Dashboard />
-                <section className="ptr-section">
-                  <div id="graph">
-                    <LineChart />
-                  </div>
-                  <div id="values">
-                    <PatrimonyValue />
-                  </div>
-              </section>
-              </main>
-            } />
-            <Route path='/possession/create' element = {
-                <main className="main">
-                  <AddPossession/>
-                </main>
-              } 
-            />
-            <Route path='/possession/:id/update' element = {
-                <main className="main">
-                  <UpdatePossession/>
-                </main>
-            }/>
+            <Route path={'/possession' || '/'} element = {<PossessionPage />}/>
+            <Route path='/patrimoine' element = {<PatrimonyPage />} />
+            <Route path='/possession/create' element = {<AddPossession/>} />
+            <Route path='/possession/:id/update' element = {<UpdatePossession/>}/>
           </Routes>
         <Footer />
       </BrowserRouter>
