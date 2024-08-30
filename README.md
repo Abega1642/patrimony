@@ -1,10 +1,10 @@
-## Application de gestion de patrimoine
+## Wealth management application
 
-This is an applicatoin of `Gestion de patrimoine`.
+This is an applicatoin of `Gestion de patrimoine` [`Wealth management`].
 
 This application is a `MVC` architecture.
 
-Following, you can find some information about the main structure of the application and some notices on how to launch each server.
+In next paragraphs, you can find some information about the main structure of the application and some notices on how to launch each server.
 
 ### Frontend : REACT JS
 
