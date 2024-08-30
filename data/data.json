@@ -19,7 +19,7 @@
                     "libelle": "MacBook Pro",
                     "valeur": 4000000,
                     "dateDebut": "2024-08-19T00:00:00.000Z",
-                    "dateFin": "2024-08-29T14:03:56.364Z",
+                    "dateFin": null,
                     "tauxAmortissement": 50
                 },
                 {
@@ -39,7 +39,7 @@
                     "libelle": "Clothes",
                     "valeur": 3500000,
                     "dateDebut": "2024-08-19T00:00:00.000Z",
-                    "dateFin": "2024-08-29T14:03:55.030Z",
+                    "dateFin": null,
                     "tauxAmortissement": 20
                 },
                 {
@@ -49,7 +49,7 @@
                     "libelle": "Alternance",
                     "valeur": 600000,
                     "dateDebut": "2024-08-19T00:00:00.000Z",
-                    "dateFin": "2024-08-29T14:03:53.545Z",
+                    "dateFin": null,
                     "tauxAmortissement": 0,
                     "jour": 29,
                     "valeurConstante": 600000
@@ -73,7 +73,7 @@
                     "libelle": "Maintenant on voit très bien",
                     "valeur": 1,
                     "dateDebut": "2024-08-30T10:16:03.471Z",
-                    "dateFin": "2024-08-30T10:50:37.628Z",
+                    "dateFin": null,
                     "tauxAmortissement": 0
                 },
                 {
@@ -87,28 +87,6 @@
                     "jour": 30,
                     "tauxAmortissement": 1,
                     "valeurConstante": 600
-                },
-                {
-                    "possesseur": {
-                        "nom": "John Doe"
-                    },
-                    "libelle": "New possession updated",
-                    "valeur": 1,
-                    "dateDebut": "2024-08-30T13:22:30.130Z",
-                    "dateFin": "2024-08-30T15:01:10.989Z",
-                    "tauxAmortissement": 0
-                },
-                {
-                    "possesseur": {
-                        "nom": "John Doe"
-                    },
-                    "libelle": "Try to add new possession of Abegà",
-                    "valeur": 135000,
-                    "dateDebut": "2024-08-28T00:00:00.000Z",
-                    "dateFin": "2024-08-30T15:03:20.636Z",
-                    "jour": 3,
-                    "tauxAmortissement": null,
-                    "valeurConstante": -135000
                 }
             ]
         }
