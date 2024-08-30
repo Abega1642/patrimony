@@ -11,10 +11,10 @@ export const Footer = () => {
               &copy; {new Date().getFullYear()} Abegà Razafindratelo. All Rights Reserved.
             </p>
             <div className="d-flex justify-content-center">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-white me-3">
+              <a href="https://web.facebook.com/a.razafindratelo/" target="_blank" rel="noopener noreferrer" className="text-white me-3">
                 <FaFacebookF size={24} />
               </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white me-3">
+              <a href="https://www.linkedin.com/in/abegà-razafindratelo" target="_blank" rel="noopener noreferrer" className="text-white me-3">
                 <FaLinkedinIn size={24} />
               </a>
               <a href="https://github.com/Abega1642" target="_blank" rel="noopener noreferrer" className="text-white">
