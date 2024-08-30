@@ -4,7 +4,7 @@ import { BASE_URL } from "../../functions_constants/backendUrl";
 import { useNavigate } from "react-router-dom";
 import FluxRadio from "./FluxRadio";
 import requestBody from "./correspondingRequestBody";
-import { FaExclamationTriangle, FaCalendarAlt, FaDollarSign, FaPercent, FaTimesCircle } from "react-icons/fa";
+import { FaExclamationTriangle, FaCalendarAlt, FaDollarSign, FaPercent, FaTimesCircle, FaCheckCircle } from "react-icons/fa";
 
 function AddPossession() {
     const [libelle, setLibelle] = useState('');
@@ -14,6 +14,7 @@ function AddPossession() {
     const [jour, setJour] = useState(1);
     const [tauxAmortissement, setTauxAmortissement] = useState(0);
     const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
 
     function handleTypeChange(e) {
@@ -76,7 +77,11 @@ function AddPossession() {
                 setType("Autres");
                 setJour(1);
                 setErrors({});
-                navigate("/possession");
+                setSuccessMessage('Possession ajoutée avec succès !');
+                setTimeout(() => {
+                    setSuccessMessage('');
+                    navigate("/possession");
+                }, 5000);
             } else {
                 console.error('Erreur lors de l\'ajout de la possession:', response.statusText);
             }
@@ -101,6 +106,13 @@ function AddPossession() {
                             <p className="lead text-center text-muted mb-4">
                                 Enregistrez vos possessions avec précision pour un suivi optimal de leur valeur et une gestion efficace de votre patrimoine.
                             </p>
+                            {successMessage && (
+                                <div className="alert alert-success d-flex align-items-center mb-4" role="alert">
+                                    <FaCheckCircle className="me-2" />
+                                    <div>{successMessage}</div>
+                                </div>
+                            )}
+
                             <div className="form-group mb-3">
                                 <label className="form-label d-flex align-items-center">
                                     <FaDollarSign className="me-2" /> Libellé :
@@ -212,7 +224,7 @@ function AddPossession() {
                 </div>
             </div>
         </main>
-    )
+    );
 }
 
 export default AddPossession;
