@@ -1,0 +1,220 @@
+openapi: "3.0.3"
+info:
+  title: Patrimony - API - STD23028
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8080
+paths:
+  /possession:
+    get:
+      tags:
+        - Possessions
+      summary: get all possessions
+      operationId: getPossessionsWithValues
+      responses:
+        '200':
+          description: possessions list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Possessions"
+
+    post:
+      tags:
+        - Possessions
+      summary: add possession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              allOf:
+                - $ref: "#/components/schemas/Possessions"
+      responses:
+        '201':
+          description: possession added
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: "#/components/schemas/Possessions"
+  /patrimoine/{date}:
+    get:
+      tags:
+        - Patrimoine
+      summary: get patrimony value at a price date
+      operationId: getPatrimonyValueByDate
+      parameters:
+        - in: path
+          name: date
+          required: true
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200' :
+          description: get the value of the patrimony
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: number
+                    example: 418745.2365
+  /possession/{libelle}:
+    put:
+      tags:
+        - Possessions
+      summary: update possession
+      operationId: updatePossessionByLibelle
+      parameters:
+        - in : path
+          name: libelle
+          required: true
+          schema:
+            type: string
+            example: "Alternance"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                libelle:
+                  type: string
+                  example: "Alternance modifiée"
+                dateFin:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: see updated possession
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "OK"
+                  data:
+                    type: object
+                    allOf:
+                      - $ref: "#/components/schemas/Possessions"
+  /possession/{libelle}/close:
+    patch:
+      tags:
+        - Possessions
+      summary: put end date of a possession to now
+      operationId: closePossession
+      parameters:
+        - in: path
+          name: libelle
+          required: true
+          schema:
+            type: string
+            example: "Survie"
+      responses:
+        '200':
+          description: the end date of the possession is now put on today's date
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "OK"
+                  data:
+                    type: object
+                    allOf:
+                      - $ref: "#/components/schemas/Possessions"
+  /patrimoine/range:
+    post:
+      tags:
+        - Patrimoine
+      summary: get patrimony values over a given interval
+      operationId: patrimonyRangeValues
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                "type":
+                  type: string
+                  example: "month"
+                start:
+                  type: string
+                  format: date-time
+                end:
+                  type: string
+                  format: date-time
+                day:
+                  type: integer
+                  format: int32
+                  example: 13
+      responses:
+        '201':
+          description: creation of the list of values of patrimony through the interval
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  patrimony_value:
+                    type: array
+                    example: [12548.25, 6000585.25, 42559.288888]
+
+
+
+components:
+  schemas:
+    Possesseur:
+      type: object
+      properties:
+        nom:
+          type: string
+          example: "John Doe"
+    Possessions:
+      type: object
+      properties:
+        possesseur:
+          type: object
+          allOf:
+            - $ref: "#/components/schemas/Possesseur"
+        libelle:
+          type: string
+          example: "Alternance"
+        valeur:
+          type: number
+          example: 600000.0
+        dateDebut:
+          type: string
+          format: date-time
+        dateFin:
+          type: string
+          format: date-time
+        tauxAmortissement:
+          type: number
+          example: 2.25
+        valeurActuel:
+          type: number
+          example: 6500.154
+    Flux:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/Possessions"
+      properties:
+        jour:
+          type: integer
+          format: int32
+          example: 13
+        valeurConstante:
+          type: number
+          example: 4251.26
