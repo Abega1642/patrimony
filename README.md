@@ -8,7 +8,7 @@ Following, you can find some information about the main structure of the applica
 
 ### Frontend : REACT JS
 
-The react server will be found in the directory named `ui`. It's running on the port `5741`.[`http://localhost:5741`]
+The react server will be found in the directory named `ui`. It's running on the port `5173`.[`http://localhost:5741`]
 
 To launch the server, you should go in the `ui` directory. 
     
