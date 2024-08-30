@@ -3,6 +3,8 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { BASE_URL } from '../../functions_constants/backendUrl';
 import getMonthlyDates from '../../functions_constants/chartAbcisse';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { FaChartLine, FaCalendarDay, FaCalendarAlt, FaSearch } from 'react-icons/fa';
 
 function useDate(monthsAhead) {
     const [date, setDate] = useState(() => {
@@ -26,7 +28,6 @@ function LineChart() {
     }, [])
 
     const getCurve = async () => {
-        console.log(endDate)
         try {
             const post = {
                 method: 'POST',
@@ -46,9 +47,8 @@ function LineChart() {
                 let result = await response.json();
                 if (result.patrimony_values && Array.isArray(result.patrimony_values)) {
                     setValues(result.patrimony_values);
-                        
                 } else {
-                        console.warn('Format des données inattendu:', result);
+                    console.warn('Format des données inattendu:', result);
                 }
             } else {
                 console.error('Erreur de réponse:', response.status, response.statusText);
@@ -73,57 +73,84 @@ function LineChart() {
     };
 
     return (
-        <section className='d-flex flex-wrap'>
-            <div className='card col-md-6 offset-md-3 mt-5 p-4 shadow-lg prfct-squre'>
-                <h3 className='text-center mb-4'>Graphique en ligne des valeurs de patrimoine</h3>
-                <div className='chart-container bg-light p-3 rounded inner-prfct-squre'>
-                    <Line data={data} />
-                </div>
-            </div>      
-            <div className='card col-md-6 offset-md-3 mt-5 p-4 shadow-lg prfct-squre'>
-                <h3 className='text-center mb-4'>Observer l`évolution de votre patrimoine</h3>
-                <form>
-                    <div className='form-group mb-3'>
-                        <label className='form-label'>Sélectionner le début de l`évolution</label>
-                        <input 
-                            type="date" 
-                            name="dateDebut" 
-                            id="dateDebut"
-                            className='form-control'
-                            onChange={e => setStart(e.target.value)}
-                        />
-                    </div>
-                    <div className='form-group mb-3'>
-                        <label className='form-label'>Sélectionner la fin de l`évolution</label>
-                        <input 
-                            type="date" 
-                            name="dateFin" 
-                            id="dateFin"
-                            className='form-control'
-                            onChange={e => setEnd(e.target.value)}
-                        />
-                    </div>
-                    <div className='form-group mb-4'>
-                        <label className='form-label'>Entrer un jour d`évolution</label>
-                        <input 
-                            type="number" 
-                            name="day" 
-                            placeholder='15'
-                            className='form-control'
-                            onChange={e => setDay(Number.parseInt(e.target.value))}
-                        />
-                    </div>
-                    <div className='text-center'>
-                        <button 
-                            type="button" 
-                            className='btn btn-primary'
-                            onClick={getCurve}>
-                            Voir l`évolution
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </section>
+        <Container fluid className='py-5' style={{ backgroundColor: '#f9f9f9' }}>
+            <Row className='mb-4'>
+                <Col md={12} lg={6} className='mx-auto'>
+                    <Card className='shadow-lg rounded-lg border-0 mb-4'>
+                        <Card.Body>
+                            <h3 className='text-center mb-4 text-primary'>
+                                <FaChartLine className='me-2' />
+                                Graphique des Valeurs de Patrimoine
+                            </h3>
+                            <div className='bg-white p-4 rounded shadow-sm'>
+                                <Line data={data} />
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+
+            <Row className='mb-4'>
+                <Col md={12} lg={6} className='mx-auto'>
+                    <Card className='shadow-lg rounded-lg border-0 mb-4'>
+                        <Card.Body>
+                            <h3 className='text-center mb-4 text-primary'>
+                                <FaCalendarAlt className='me-2' />
+                                Observer l`Évolution de Votre Patrimoine
+                            </h3>
+                            <Form>
+                                <Form.Group className='mb-3'>
+                                    <Form.Label className='d-flex align-items-center'>
+                                        <FaCalendarDay className='me-2 text-primary' />
+                                        Sélectionner le début de l`évolution
+                                    </Form.Label>
+                                    <Form.Control
+                                        type="date"
+                                        name="dateDebut"
+                                        id="dateDebut"
+                                        onChange={e => setStart(new Date(e.target.value))}
+                                    />
+                                </Form.Group>
+                                <Form.Group className='mb-3'>
+                                    <Form.Label className='d-flex align-items-center'>
+                                        <FaCalendarDay className='me-2 text-primary' />
+                                        Sélectionner la fin de l`évolution
+                                    </Form.Label>
+                                    <Form.Control
+                                        type="date"
+                                        name="dateFin"
+                                        id="dateFin"
+                                        onChange={e => setEnd(new Date(e.target.value))}
+                                    />
+                                </Form.Group>
+                                <Form.Group className='mb-4'>
+                                    <Form.Label className='d-flex align-items-center'>
+                                        <FaSearch className='me-2 text-primary' />
+                                        Entrer un jour d\évolution
+                                    </Form.Label>
+                                    <Form.Control
+                                        type="number"
+                                        name="day"
+                                        placeholder='15'
+                                        onChange={e => setDay(Number.parseInt(e.target.value))}
+                                    />
+                                </Form.Group>
+                                <div className='text-center'>
+                                    <Button
+                                        variant="primary"
+                                        className='shadow-sm'
+                                        onClick={getCurve}
+                                    >
+                                        <FaSearch className='me-2' />
+                                        Voir l`Évolution
+                                    </Button>
+                                </div>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
