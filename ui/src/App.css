@@ -194,4 +194,41 @@ i {
     background-color: rgba(255, 187, 0, 0.2);
     border-radius: 5px;
 }
-  
+
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+}
+.footer .text-white {
+    color: #ffffff !important;
+}
+
+.footer .text-white:hover {
+    color: #ffbb00 !important;
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+.footer p {
+    font-size: 1rem;
+}
+
+.footer .d-flex {
+    margin-top: 1rem;
+}
+
+.footer .d-flex .me-3 {
+    margin-right: 1rem; 
+}
+
+@media (max-width: 768px) {
+    .footer p {
+        font-size: 0.875rem;
+    }
+
+    .footer .d-flex .me-3 {
+        margin-right: 0.75rem;
+    }
+}
