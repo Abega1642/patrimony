@@ -1,14 +1,14 @@
-## Application de gestion de patrimoine
+## Wealth management application
 
-This is an applicatoin of `Gestion de patrimoine`.
+This is an applicatoin of `Gestion de patrimoine` [`Wealth management`].
 
 This application is a `MVC` architecture.
 
-Following, you can find some information about the main structure of the application and some notices on how to launch each server.
+In next paragraphs, you can find some information about the main structure of the application and some notices on how to launch each server.
 
 ### Frontend : REACT JS
 
-The react server will be found in the directory named `ui`. It's running on the port `5173`.[`http://localhost:5741`]
+The react server will be found in the directory named `ui`. It's running on the port `5173`.[`http://localhost:5173`]
 
 To launch the server, you should go in the `ui` directory. 
     
