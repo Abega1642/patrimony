@@ -17,10 +17,10 @@
                         "nom": "John Doe"
                     },
                     "libelle": "MacBook Pro",
-                    "valeur": 4000000,
-                    "dateDebut": "2024-08-19T00:00:00.000Z",
+                    "valeur": 4300000,
+                    "dateDebut": "2023-12-25T00:00:00.000Z",
                     "dateFin": null,
-                    "tauxAmortissement": 50
+                    "tauxAmortissement": 5
                 },
                 {
                     "possesseur": {
@@ -28,7 +28,7 @@
                     },
                     "libelle": "Compte épargne",
                     "valeur": 500000,
-                    "dateDebut": "2024-08-19T00:00:00.000Z",
+                    "dateDebut": "2019-01-06T00:00:00.000Z",
                     "dateFin": null,
                     "tauxAmortissement": -5
                 },
@@ -37,10 +37,10 @@
                         "nom": "John Doe"
                     },
                     "libelle": "Clothes",
-                    "valeur": 3500000,
-                    "dateDebut": "2024-08-19T00:00:00.000Z",
+                    "valeur": 2000000,
+                    "dateDebut": "2020-01-01T00:00:00.000Z",
                     "dateFin": null,
-                    "tauxAmortissement": 20
+                    "tauxAmortissement": 10
                 },
                 {
                     "possesseur": {
@@ -48,10 +48,10 @@
                     },
                     "libelle": "Alternance",
                     "valeur": 600000,
-                    "dateDebut": "2024-08-19T00:00:00.000Z",
+                    "dateDebut": "2023-02-13T00:00:00.000Z",
                     "dateFin": null,
                     "tauxAmortissement": 0,
-                    "jour": 29,
+                    "jour": 1,
                     "valeurConstante": 600000
                 },
                 {
@@ -60,7 +60,7 @@
                     },
                     "libelle": "Survie",
                     "valeur": 300000,
-                    "dateDebut": "2024-08-09T00:00:00.000Z",
+                    "dateDebut": "2023-02-13T00:00:00.000Z",
                     "dateFin": null,
                     "tauxAmortissement": 0,
                     "jour": 2,
@@ -70,15 +70,14 @@
                     "possesseur": {
                         "nom": "John Doe"
                     },
-                    "libelle": "New possession libelle updated",
-                    "valeur": 10000,
-                    "dateDebut": "2024-08-22T00:00:00.000Z",
-                    "dateFin": "2024-08-30T21:07:42.053Z",
-                    "jour": 11,
-                    "tauxAmortissement": 0,
-                    "valeurConstante": -10000
+                    "libelle": "Redmi Note 9",
+                    "valeur": 800000,
+                    "dateDebut": "2022-12-29T00:00:00.000Z",
+                    "dateFin": null,
+                    "tauxAmortissement": 15
                 }
             ]
         }
     }
 ]
+
