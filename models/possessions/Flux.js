@@ -37,7 +37,7 @@ export default class Flux extends Possession {
       return compteur;
     };
 
-    return nombreDeMois(this.dateDebut, date, this.jour) * this.valeurConstante;
+    return (new Date(date) < this.dateDebut) ? 0 : nombreDeMois(this.dateDebut, date, this.jour) * this.valeurConstante;
 
   }
 }

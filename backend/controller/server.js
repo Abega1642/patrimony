@@ -7,6 +7,7 @@ import { closePossession } from '../functions/possessions/closePossession.js';
 import { patrimonyRangeValues } from '../functions/patrimony/patrimonyRangeValues.js';
 import {DATA_JSON_FILE_PATH} from '../constant/dataJSON.js'
 import getPossessionsWithValues from '../functions/possessions/getPossessionsValues.js';
+import test from '../functions/possessions/test.js';
 
 
 const app = express();
@@ -90,7 +91,17 @@ app.post('/patrimoine/range', async (req,res) => {
   } catch (err) {
     res.status(500).json({ status: "Possessions retrievement failed.", error: err.message });
   }
-}) 
+})
+
+app.get('/test/:date', async (req, res) => {
+  try {
+    const date = req.params.date
+    const possessions = await test(date);
+    res.status(200).json(possessions);
+  } catch (err) {
+    res.status(500).json({ status: "Possessions retrievement failed.", error: err.message });
+  }
+});
 
 const PORT = process.env.PORT || 8080;
 

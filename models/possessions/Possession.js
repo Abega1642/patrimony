@@ -12,14 +12,15 @@ export default class Possession {
     return this.getValeurApresAmortissement(date);
   }
 
-  getValeurApresAmortissement(dateActuelle) {
-    if (dateActuelle < this.dateDebut) {
+  getValeurApresAmortissement(dateEvaluation) {
+    dateEvaluation = new Date(dateEvaluation);
+    if (dateEvaluation < this.dateDebut) {
       return 0;
     }
     const differenceDate = {
-      year: dateActuelle.getFullYear() - this.dateDebut.getFullYear(),
-      month: dateActuelle.getMonth() - this.dateDebut.getMonth(),
-      day: dateActuelle.getDate() - this.dateDebut.getDate(),
+      year: dateEvaluation.getFullYear() - this.dateDebut.getFullYear(),
+      month: dateEvaluation.getMonth() - this.dateDebut.getMonth(),
+      day: dateEvaluation.getDate() - this.dateDebut.getDate(),
     };
   
     var raison = differenceDate.year + differenceDate.month / 12 + differenceDate.day / 365;
